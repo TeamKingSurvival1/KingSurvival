@@ -5,7 +5,7 @@
     public class Engine
     {
         static int size = 8;
-        static Car car = new Car(4, 7);
+        static King car = new King(4, 7);
 
 
         static Peshka peshkaA = new Peshka(1, 0);
@@ -60,22 +60,22 @@
                     {
                         case "KUL":
                             {
-                                Car.KingMove(car, peshkaA, peshkaB, peshkaC, peshkaD, -1, -1, matrica, ref isKingTurn);
+                                King.KingMove(car, peshkaA, peshkaB, peshkaC, peshkaD, -1, -1, matrica, ref isKingTurn);
                                 break;
                             }
                         case "KUR":
                             {
-                                Car.KingMove(car, peshkaA, peshkaB, peshkaC, peshkaD, 1, -1, matrica, ref isKingTurn);
+                                King.KingMove(car, peshkaA, peshkaB, peshkaC, peshkaD, 1, -1, matrica, ref isKingTurn);
                                 break;
                             }
                         case "KDL":
                             {
-                                Car.KingMove(car, peshkaA, peshkaB, peshkaC, peshkaD, -1, 1, matrica, ref isKingTurn);
+                                King.KingMove(car, peshkaA, peshkaB, peshkaC, peshkaD, -1, 1, matrica, ref isKingTurn);
                                 break;
                             }
                         case "KDR":
                             {
-                                Car.KingMove(car, peshkaA, peshkaB, peshkaC, peshkaD, 1, 1, matrica, ref isKingTurn);
+                                King.KingMove(car, peshkaA, peshkaB, peshkaC, peshkaD, 1, 1, matrica, ref isKingTurn);
                                 break;
                             }
                         default:
