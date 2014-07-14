@@ -47,6 +47,8 @@
     <Compile Include="Game.cs" />
     <Compile Include="IRenderer.cs" />
     <Compile Include="Peshka.cs" />
+    <Compile Include="Piece.cs" />
+    <Compile Include="Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderer.cs" />
   </ItemGroup>

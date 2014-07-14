@@ -34,11 +34,11 @@
             matrica[peshkaB.Y, peshkaB.X] = 'B';
             matrica[peshkaC.Y, peshkaC.X] = 'C';
             matrica[peshkaD.Y, peshkaD.X] = 'D';
-            matrica[car.Y, car.X] = 'K';
+            matrica[car.Position.Y, car.Position.X] = 'K';
             ConsoleRenderer.Instance.Render(matrica);
             bool pobedaPeshki = false;
 
-            while (car.Y > 0 && car.Y < size && !pobedaPeshki)
+            while (car.Position.Y > 0 && car.Position.Y < size && !pobedaPeshki)
             {
                 isKingTurn = true;
                 while (isKingTurn)
@@ -60,22 +60,22 @@
                     {
                         case "KUL":
                             {
-                                King.KingMove(car, peshkaA, peshkaB, peshkaC, peshkaD, -1, -1, matrica, ref isKingTurn);
+                                car.Move();
                                 break;
                             }
                         case "KUR":
                             {
-                                King.KingMove(car, peshkaA, peshkaB, peshkaC, peshkaD, 1, -1, matrica, ref isKingTurn);
+                                car.Move();
                                 break;
                             }
                         case "KDL":
                             {
-                                King.KingMove(car, peshkaA, peshkaB, peshkaC, peshkaD, -1, 1, matrica, ref isKingTurn);
+                                car.Move();
                                 break;
                             }
                         case "KDR":
                             {
-                                King.KingMove(car, peshkaA, peshkaB, peshkaC, peshkaD, 1, 1, matrica, ref isKingTurn);
+                                car.Move();
                                 break;
                             }
                         default:
