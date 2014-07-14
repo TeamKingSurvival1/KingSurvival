@@ -3,10 +3,13 @@
     using System;
 
     /// <summary>
-    ///     The <c>Position</c> type provides functionality for interacting with co-ordinates.
+    ///     The <c>Position</c> type provides functionality for interacting with co-ordinates of a chess game board.
     /// </summary>
     internal class Position
     {
+        const int LowestGameBoardCoordinate = 1; // this means that a game board class must be extracted
+        const int HighestGameBoardCoordinate = 8;
+
         private int x;
         private int y;
 
@@ -57,7 +60,7 @@
         /// </returns>
         private void CoordinateValidationCheck(int coordinate)
         {
-            if (coordinate < 1 || coordinate > 8)
+            if (coordinate < LowestGameBoardCoordinate || coordinate > HighestGameBoardCoordinate)
             {
                 throw new ArgumentOutOfRangeException("coordinate", String.Format("Co-ordinate {0} is out of the gameboard", coordinate));
             }
