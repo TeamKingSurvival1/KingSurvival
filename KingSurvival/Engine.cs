@@ -48,6 +48,7 @@
                     ConsoleRenderer.Instance.Render(matrica);
                     Console.Write("King`s Turn:");
                     string direction = Console.ReadLine();
+
                     if (direction == "")
                     {
                         isKingTurn = true;
@@ -58,26 +59,14 @@
 
                     switch (direction)
                     {
-                        case "KUL":
-                            {
-                                car.Move();
-                                break;
-                            }
-                        case "KUR":
-                            {
-                                car.Move();
-                                break;
-                            }
-                        case "KDL":
-                            {
-                                car.Move();
-                                break;
-                            }
-                        case "KDR":
-                            {
-                                car.Move();
-                                break;
-                            }
+                        case "KUL": car.Move();
+                            break;
+                        case "KUR": car.Move();
+                            break;
+                        case "KDL": car.Move();
+                            break;
+                        case "KDR": car.Move();
+                            break;
                         default:
                             {
                                 isKingTurn = true;
@@ -89,12 +78,14 @@
 
                     }
                 }
+
                 while (!isKingTurn)
                 {
                     isKingTurn = true;
                     ConsoleRenderer.Instance.Render(matrica);
                     Console.Write("Pawn`s Turn:");
                     string direction = Console.ReadLine();
+
                     if (direction == "")
                     {
                         isKingTurn = false;
@@ -105,46 +96,22 @@
 
                     switch (direction)
                     {
-                        case "ADR":
-                            {
-                                peshkaA.Move();
-                                break;
-                            }
-                        case "ADL":
-                            {
-                                peshkaA.Move();
-                                break;
-                            }
-                        case "BDL":
-                            {
-                                peshkaB.Move();
-                                break;
-                            }
-                        case "BDR":
-                            {
-                                peshkaB.Move();
-                                break;
-                            }
-                        case "CDL":
-                            {
-                                peshkaC.Move();
-                                break;
-                            }
-                        case "CDR":
-                            {
-                                peshkaC.Move();
-                                break;
-                            }
-                        case "DDR":
-                            {
-                                peshkaD.Move();
-                                break;
-                            }
-                        case "DDL":
-                            {
-                                peshkaD.Move();
-                                break;
-                            }
+                        case "ADR": peshkaA.Move();
+                            break;
+                        case "ADL": peshkaA.Move();
+                            break;
+                        case "BDL": peshkaB.Move();
+                            break;
+                        case "BDR": peshkaB.Move();
+                            break;
+                        case "CDL": peshkaC.Move();
+                            break;
+                        case "CDR": peshkaC.Move();
+                            break;
+                        case "DDR": peshkaD.Move();
+                            break;
+                        case "DDL": peshkaD.Move();
+                            break;
                         default:
                             {
                                 isKingTurn = false;
@@ -154,9 +121,11 @@
                                 break;
                             }
                     }
+
                     ConsoleRenderer.Instance.Render(matrica);
                 }
             }
+
             if (pobedaPeshki)
             {
                 Console.WriteLine("Pawn`s win!");
