@@ -8,13 +8,13 @@
         static King car = new King(4, 7);
 
 
-        static Peshka peshkaA = new Peshka(1, 0);
+        static Pawn peshkaA = new Pawn(1, 0);
 
-        static Peshka peshkaB = new Peshka(3, 0);
+        static Pawn peshkaB = new Pawn(3, 0);
 
-        static Peshka peshkaC = new Peshka(5, 0);
+        static Pawn peshkaC = new Pawn(5, 0);
 
-        static Peshka peshkaD = new Peshka(7, 0);
+        static Pawn peshkaD = new Pawn(7, 0);
 
         static bool isKingTurn = true;
 
@@ -30,10 +30,10 @@
                                             {'-','+','-','+','-','+','-','+'}};
 
 
-            matrica[peshkaA.Y, peshkaA.X] = 'A';
-            matrica[peshkaB.Y, peshkaB.X] = 'B';
-            matrica[peshkaC.Y, peshkaC.X] = 'C';
-            matrica[peshkaD.Y, peshkaD.X] = 'D';
+            matrica[peshkaA.Position.Y, peshkaA.Position.X] = 'A';
+            matrica[peshkaB.Position.Y, peshkaB.Position.X] = 'B';
+            matrica[peshkaC.Position.Y, peshkaC.Position.X] = 'C';
+            matrica[peshkaD.Position.Y, peshkaD.Position.X] = 'D';
             matrica[car.Position.Y, car.Position.X] = 'K';
             ConsoleRenderer.Instance.Render(matrica);
             bool pobedaPeshki = false;
@@ -107,42 +107,42 @@
                     {
                         case "ADR":
                             {
-                                pobedaPeshki = Peshka.PawnAMove(peshkaA, 1, 1, matrica, ref isKingTurn);
+                                peshkaA.Move();
                                 break;
                             }
                         case "ADL":
                             {
-                                pobedaPeshki = Peshka.PawnAMove(peshkaA, -1, 1, matrica, ref isKingTurn);
+                                peshkaA.Move();
                                 break;
                             }
                         case "BDL":
                             {
-                                pobedaPeshki = Peshka.PawnBMove(peshkaB, -1, 1, matrica, ref isKingTurn);
+                                peshkaB.Move();
                                 break;
                             }
                         case "BDR":
                             {
-                                pobedaPeshki = Peshka.PawnBMove(peshkaB, 1, 1, matrica, ref isKingTurn);
+                                peshkaB.Move();
                                 break;
                             }
                         case "CDL":
                             {
-                                pobedaPeshki = Peshka.PawnCMove(peshkaC, -1, 1, matrica, ref isKingTurn);
+                                peshkaC.Move();
                                 break;
                             }
                         case "CDR":
                             {
-                                pobedaPeshki = Peshka.PawnCMove(peshkaC, 1, 1, matrica, ref isKingTurn);
+                                peshkaC.Move();
                                 break;
                             }
                         case "DDR":
                             {
-                                pobedaPeshki = Peshka.PawnDMove(peshkaD, 1, 1, matrica, ref isKingTurn);
+                                peshkaD.Move();
                                 break;
                             }
                         case "DDL":
                             {
-                                pobedaPeshki = Peshka.PawnDMove(peshkaD, -1, 1, matrica, ref isKingTurn);
+                                peshkaD.Move();
                                 break;
                             }
                         default:

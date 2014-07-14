@@ -1,7 +1,5 @@
 ﻿namespace KingSurvival
 {
-    using System;
-
     internal class King : Piece
     {
         private Point position;
