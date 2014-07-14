@@ -8,8 +8,7 @@
 
         public King(int x, int y)
         {
-            this.Position.X = x;
-            this.Position.Y = y;
+            position = new Point(x, y);
         }
 
         internal override Point Position
