@@ -2,14 +2,14 @@
 {
     internal class King : Piece
     {
-        private Point position;
+        private Position position;
 
         public King(int x, int y)
         {
-            position = new Point(x, y);
+            position = new Position(x, y);
         }
 
-        internal override Point Position
+        internal override Position Position
         {
             get
             {

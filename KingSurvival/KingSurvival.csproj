@@ -49,7 +49,7 @@
     <Compile Include="IRenderer.cs" />
     <Compile Include="Pawn.cs" />
     <Compile Include="Piece.cs" />
-    <Compile Include="Point.cs" />
+    <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderer.cs" />
   </ItemGroup>

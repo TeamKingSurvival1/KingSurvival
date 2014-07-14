@@ -2,12 +2,15 @@
 {
     using System;
 
-    internal class Point
+    /// <summary>
+    ///     The <c>Position</c> type provides functionality for interacting with co-ordinates.
+    /// </summary>
+    internal class Position
     {
-        int x;
-        int y;
+        private int x;
+        private int y;
 
-        internal Point(int xCoordinate, int yCoordinate)
+        internal Position(int xCoordinate, int yCoordinate)
         {
             this.X = xCoordinate;
             this.Y = yCoordinate;
@@ -43,11 +46,20 @@
             }
         }
 
+        /// <summary>
+        ///     Checks if a co-ordinate value is valid.
+        /// </summary>
+        /// <param name="coordinate">
+        ///     A <see cref="Int32" /> type for input.
+        /// </param>
+        /// <returns>
+        ///     No value is returned, but in case of invalid co-ordinate value throws an exception.
+        /// </returns>
         private void CoordinateValidationCheck(int coordinate)
         {
             if (coordinate < 1 || coordinate > 8)
             {
-                throw new ArgumentOutOfRangeException("coordinate", String.Format("Co-ordinate {0} is out of the gameboard"));
+                throw new ArgumentOutOfRangeException("coordinate", String.Format("Co-ordinate {0} is out of the gameboard", coordinate));
             }
         }
     }
