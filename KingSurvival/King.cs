@@ -4,83 +4,85 @@
 
     internal class King
     {
-        private int xCoord;
-        private int yCoord;
+        private int x;
+        private int y;
 
         public King()
         {
-            this.xCoord = 0;
-            this.yCoord = 0;
+            // TODO: The King initially is located at row 7 and column 3 -> extract constants.
+            this.x = 0;
+            this.y = 0;
         }
 
-        public King(int x, int y)
+        public King(int initialXCoordinate, int initialYCoordinate)
         {
-            this.xCoord = x;
-            this.yCoord = y;
+            this.x = initialXCoordinate;
+            this.y = initialYCoordinate;
         }
 
         public int X
         {
-            get { return xCoord; }
-            set { xCoord = value; }
+            get { return x; }
+            set { x = value; }
         }
 
         public int Y
         {
-            get { return yCoord; }
-            set { yCoord = value; }
+            get { return y; }
+            set { y = value; }
         }
 
-        public static void KingMove(King car, Peshka peshkaA, Peshka peshkaB, Peshka peshkaC, Peshka peshkaD, int dirX, int dirY, char[,] matrica, ref bool isKingTurn)
+        // TODO: Reduce number of parameters that MoveTheKing() method takes.
+        public static void MoveTheKing(King theKing, Pawn pawnA, Pawn pawnB, Pawn pawnC, Pawn pawnD, int horizontalDirection, int verticalDirection, char[,] gameBoard, ref bool isKingsTurn)
         {
 
-            if (car.X + dirX < 0 || car.X + dirX > matrica.GetLength(0) - 1)
+            if (theKing.X + horizontalDirection < 0 || theKing.X + horizontalDirection > gameBoard.GetLength(0) - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
                 Console.ReadKey();
-                isKingTurn = true;
+                isKingsTurn = true;
                 return;
             }
 
-            if (car.Y + dirY < 0 || car.Y + dirY > matrica.GetLength(0) - 1)
+            if (theKing.Y + verticalDirection < 0 || theKing.Y + verticalDirection > gameBoard.GetLength(0) - 1)
             {
                 Console.WriteLine("Invalid Move!");
                 Console.WriteLine("**Press a key to continue**");
                 Console.ReadKey();
-                isKingTurn = true;
+                isKingsTurn = true;
                 return;
             }
 
-            if (matrica[car.Y + dirY, car.X + dirX] == 'A')
+            if (gameBoard[theKing.Y + verticalDirection, theKing.X + horizontalDirection] == 'A')
             {
-                matrica[car.Y + dirY, car.X + dirX] = 'K';
-                matrica[peshkaA.Y, peshkaA.X] = '-';
+                gameBoard[theKing.Y + verticalDirection, theKing.X + horizontalDirection] = 'K';
+                gameBoard[pawnA.Y, pawnA.X] = '-';
             }
 
-            if (matrica[car.Y + dirY, car.X + dirX] == 'B')
+            if (gameBoard[theKing.Y + verticalDirection, theKing.X + horizontalDirection] == 'B')
             {
-                matrica[car.Y + dirY, car.X + dirX] = 'K';
-                matrica[peshkaB.Y, peshkaB.X] = '-';
+                gameBoard[theKing.Y + verticalDirection, theKing.X + horizontalDirection] = 'K';
+                gameBoard[pawnB.Y, pawnB.X] = '-';
             }
 
-            if (matrica[car.Y + dirY, car.X + dirX] == 'C')
+            if (gameBoard[theKing.Y + verticalDirection, theKing.X + horizontalDirection] == 'C')
             {
-                matrica[car.Y + dirY, car.X + dirX] = 'K';
-                matrica[peshkaC.Y, peshkaC.X] = '-';
+                gameBoard[theKing.Y + verticalDirection, theKing.X + horizontalDirection] = 'K';
+                gameBoard[pawnC.Y, pawnC.X] = '-';
             }
 
-            if (matrica[car.Y + dirY, car.X + dirX] == 'D')
+            if (gameBoard[theKing.Y + verticalDirection, theKing.X + horizontalDirection] == 'D')
             {
-                matrica[car.Y + dirY, car.X + dirX] = 'K';
-                matrica[peshkaD.Y, peshkaD.X] = '-';
+                gameBoard[theKing.Y + verticalDirection, theKing.X + horizontalDirection] = 'K';
+                gameBoard[pawnD.Y, pawnD.X] = '-';
             }
 
-            matrica[car.Y, car.X] = '-';
-            matrica[car.Y + dirY, car.X + dirX] = 'K';
+            gameBoard[theKing.Y, theKing.X] = '-';
+            gameBoard[theKing.Y + verticalDirection, theKing.X + horizontalDirection] = 'K';
 
-            car.Y += dirY;
-            car.X += dirX;
+            theKing.Y += verticalDirection;
+            theKing.X += horizontalDirection;
 
             return;
         }

@@ -4,23 +4,24 @@
 
     public class Engine
     {
-        static int size = 8;
-        static King car = new King(4, 7);
+        // The original game is played on a standard chess-board of size 8 x 8 cells.
+        static int gameBoardSize = 8;
+        static King theKing = new King(4, 7);
 
 
-        static Peshka peshkaA = new Peshka(1, 0);
+        static Pawn pawnA = new Pawn(1, 0);
 
-        static Peshka peshkaB = new Peshka(3, 0);
+        static Pawn pawnB = new Pawn(3, 0);
 
-        static Peshka peshkaC = new Peshka(5, 0);
+        static Pawn pawnC = new Pawn(5, 0);
 
-        static Peshka peshkaD = new Peshka(7, 0);
+        static Pawn pawnD = new Pawn(7, 0);
 
-        static bool isKingTurn = true;
+        static bool isKingsTurn = true;
 
         public void Run()
         {
-            char[,] matrica = new char[,]   {{'+','-','+','-','+','-','+','-'},
+            char[,] gameBoard = new char[,]   {{'+','-','+','-','+','-','+','-'},
                                             {'-','+','-','+','-','+','-','+'},
                                             {'+','-','+','-','+','-','+','-'},
                                             {'-','+','-','+','-','+','-','+'},
@@ -30,57 +31,57 @@
                                             {'-','+','-','+','-','+','-','+'}};
 
 
-            matrica[peshkaA.Y, peshkaA.X] = 'A';
-            matrica[peshkaB.Y, peshkaB.X] = 'B';
-            matrica[peshkaC.Y, peshkaC.X] = 'C';
-            matrica[peshkaD.Y, peshkaD.X] = 'D';
-            matrica[car.Y, car.X] = 'K';
-            ConsoleRenderer.Instance.Render(matrica);
-            bool pobedaPeshki = false;
+            gameBoard[pawnA.Y, pawnA.X] = 'A';
+            gameBoard[pawnB.Y, pawnB.X] = 'B';
+            gameBoard[pawnC.Y, pawnC.X] = 'C';
+            gameBoard[pawnD.Y, pawnD.X] = 'D';
+            gameBoard[theKing.Y, theKing.X] = 'K';
+            ConsoleRenderer.Instance.Render(gameBoard);
+            bool pawnsWin = false;
 
-            while (car.Y > 0 && car.Y < size && !pobedaPeshki)
+            while (theKing.Y > 0 && theKing.Y < gameBoardSize && !pawnsWin)
             {
-                isKingTurn = true;
-                while (isKingTurn)
+                isKingsTurn = true;
+                while (isKingsTurn)
                 {
-                    isKingTurn = false;
+                    isKingsTurn = false;
 
-                    ConsoleRenderer.Instance.Render(matrica);
+                    ConsoleRenderer.Instance.Render(gameBoard);
                     Console.Write("King`s Turn:");
-                    string direction = Console.ReadLine();
-                    if (direction == "")
+                    string moveDirection = Console.ReadLine();
+                    if (moveDirection == "")
                     {
-                        isKingTurn = true;
+                        isKingsTurn = true;
                         continue;
                     }
 
-                    direction = direction.ToUpper();
+                    moveDirection = moveDirection.ToUpper();
 
-                    switch (direction)
+                    switch (moveDirection)
                     {
                         case "KUL":
                             {
-                                King.KingMove(car, peshkaA, peshkaB, peshkaC, peshkaD, -1, -1, matrica, ref isKingTurn);
+                                King.MoveTheKing(theKing, pawnA, pawnB, pawnC, pawnD, -1, -1, gameBoard, ref isKingsTurn);
                                 break;
                             }
                         case "KUR":
                             {
-                                King.KingMove(car, peshkaA, peshkaB, peshkaC, peshkaD, 1, -1, matrica, ref isKingTurn);
+                                King.MoveTheKing(theKing, pawnA, pawnB, pawnC, pawnD, 1, -1, gameBoard, ref isKingsTurn);
                                 break;
                             }
                         case "KDL":
                             {
-                                King.KingMove(car, peshkaA, peshkaB, peshkaC, peshkaD, -1, 1, matrica, ref isKingTurn);
+                                King.MoveTheKing(theKing, pawnA, pawnB, pawnC, pawnD, -1, 1, gameBoard, ref isKingsTurn);
                                 break;
                             }
                         case "KDR":
                             {
-                                King.KingMove(car, peshkaA, peshkaB, peshkaC, peshkaD, 1, 1, matrica, ref isKingTurn);
+                                King.MoveTheKing(theKing, pawnA, pawnB, pawnC, pawnD, 1, 1, gameBoard, ref isKingsTurn);
                                 break;
                             }
                         default:
                             {
-                                isKingTurn = true;
+                                isKingsTurn = true;
                                 Console.WriteLine("Invalid input!");
                                 Console.WriteLine("**Press a key to continue**");
                                 Console.ReadKey();
@@ -89,81 +90,81 @@
 
                     }
                 }
-                while (!isKingTurn)
+                while (!isKingsTurn)
                 {
-                    isKingTurn = true;
-                    ConsoleRenderer.Instance.Render(matrica);
+                    isKingsTurn = true;
+                    ConsoleRenderer.Instance.Render(gameBoard);
                     Console.Write("Pawn`s Turn:");
-                    string direction = Console.ReadLine();
-                    if (direction == "")
+                    string moveDirection = Console.ReadLine();
+                    if (moveDirection == "")
                     {
-                        isKingTurn = false;
+                        isKingsTurn = false;
                         continue;
                     }
 
-                    direction = direction.ToUpper();
+                    moveDirection = moveDirection.ToUpper();
 
-                    switch (direction)
+                    switch (moveDirection)
                     {
                         case "ADR":
                             {
-                                pobedaPeshki = Peshka.PawnAMove(peshkaA, 1, 1, matrica, ref isKingTurn);
+                                pawnsWin = Pawn.PawnAMove(pawnA, 1, 1, gameBoard, ref isKingsTurn);
                                 break;
                             }
                         case "ADL":
                             {
-                                pobedaPeshki = Peshka.PawnAMove(peshkaA, -1, 1, matrica, ref isKingTurn);
+                                pawnsWin = Pawn.PawnAMove(pawnA, -1, 1, gameBoard, ref isKingsTurn);
                                 break;
                             }
                         case "BDL":
                             {
-                                pobedaPeshki = Peshka.PawnBMove(peshkaB, -1, 1, matrica, ref isKingTurn);
+                                pawnsWin = Pawn.PawnBMove(pawnB, -1, 1, gameBoard, ref isKingsTurn);
                                 break;
                             }
                         case "BDR":
                             {
-                                pobedaPeshki = Peshka.PawnBMove(peshkaB, 1, 1, matrica, ref isKingTurn);
+                                pawnsWin = Pawn.PawnBMove(pawnB, 1, 1, gameBoard, ref isKingsTurn);
                                 break;
                             }
                         case "CDL":
                             {
-                                pobedaPeshki = Peshka.PawnCMove(peshkaC, -1, 1, matrica, ref isKingTurn);
+                                pawnsWin = Pawn.PawnCMove(pawnC, -1, 1, gameBoard, ref isKingsTurn);
                                 break;
                             }
                         case "CDR":
                             {
-                                pobedaPeshki = Peshka.PawnCMove(peshkaC, 1, 1, matrica, ref isKingTurn);
+                                pawnsWin = Pawn.PawnCMove(pawnC, 1, 1, gameBoard, ref isKingsTurn);
                                 break;
                             }
                         case "DDR":
                             {
-                                pobedaPeshki = Peshka.PawnDMove(peshkaD, 1, 1, matrica, ref isKingTurn);
+                                pawnsWin = Pawn.PawnDMove(pawnD, 1, 1, gameBoard, ref isKingsTurn);
                                 break;
                             }
                         case "DDL":
                             {
-                                pobedaPeshki = Peshka.PawnDMove(peshkaD, -1, 1, matrica, ref isKingTurn);
+                                pawnsWin = Pawn.PawnDMove(pawnD, -1, 1, gameBoard, ref isKingsTurn);
                                 break;
                             }
                         default:
                             {
-                                isKingTurn = false;
+                                isKingsTurn = false;
                                 Console.WriteLine("Invalid input!");
                                 Console.WriteLine("**Press a key to continue**");
                                 Console.ReadKey();
                                 break;
                             }
                     }
-                    ConsoleRenderer.Instance.Render(matrica);
+                    ConsoleRenderer.Instance.Render(gameBoard);
                 }
             }
-            if (pobedaPeshki)
+            if (pawnsWin)
             {
-                Console.WriteLine("Pawn`s win!");
+                Console.WriteLine("Pawns win!");
             }
             else
             {
-                Console.WriteLine("King`s win!");
+                Console.WriteLine("King wins!");
             }
         }
     }

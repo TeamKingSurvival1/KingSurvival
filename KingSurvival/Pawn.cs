@@ -5,22 +5,23 @@ using System.Text;
 
 namespace KingSurvival
 {
-    public class Peshka
+    public class Pawn
     {
         //tova e klasa Peshka, koito zadava peshak s koordinati X i Y
 
         int x;
         int y;
 
-        public Peshka()
+        // TODO: Only pawn A has coordinates (0, 0) -> perhaps refactor this constructor?
+        public Pawn()
         {
             this.x = 0;
             this.y = 0;
         }
-        public Peshka(int x, int y)
+        public Pawn(int initialXCoordinate, int initialYCoordinate)
         {
-            this.x = x;
-            this.y = y;
+            this.x = initialXCoordinate;
+            this.y = initialYCoordinate;
         }
         public int X
         {
@@ -36,7 +37,8 @@ namespace KingSurvival
 
         //abe tuka sym gi napravil edni... ama raboti
         //kvo kat sa 4 metoda
-        public static bool PawnAMove(Peshka peshkaA, int dirX, int dirY, char[,] matrix, ref bool isKingTurn)
+        // TODO: Combine the following 4 methods into 1 method named isPawnMoveValid
+        public static bool PawnAMove(Pawn peshkaA, int dirX, int dirY, char[,] matrix, ref bool isKingTurn)
         {
             //sledvat mnogo proverki
             if (peshkaA.X + dirX < 0 || peshkaA.X + dirX > matrix.GetLength(0) - 1)
@@ -80,7 +82,7 @@ namespace KingSurvival
             peshkaA.X += dirX;
             return false;
         }
-        public static bool PawnBMove(Peshka peshkaB, int dirX, int dirY, char[,] matrix, ref bool isKingTurn)
+        public static bool PawnBMove(Pawn peshkaB, int dirX, int dirY, char[,] matrix, ref bool isKingTurn)
         {//za dokumentaciq pregledai PawnAMove
             if (peshkaB.X + dirX < 0 || peshkaB.X + dirX > matrix.GetLength(0) - 1)
             {
@@ -120,7 +122,7 @@ namespace KingSurvival
             peshkaB.X += dirX;
             return false;
         }
-        public static bool PawnCMove(Peshka peshkaC, int dirX, int dirY, char[,] matrix, ref bool isKingTurn)
+        public static bool PawnCMove(Pawn peshkaC, int dirX, int dirY, char[,] matrix, ref bool isKingTurn)
         {//za dokumentaciq pregledai PawnAMove
             if (peshkaC.X + dirX < 0 || peshkaC.X + dirX > matrix.GetLength(0) - 1)
             {
@@ -159,7 +161,7 @@ namespace KingSurvival
             peshkaC.X += dirX;
             return false;
         }
-        public static bool PawnDMove(Peshka peshkaD, int dirX, int dirY, char[,] matrix, ref bool isKingTurn)
+        public static bool PawnDMove(Pawn peshkaD, int dirX, int dirY, char[,] matrix, ref bool isKingTurn)
         {//za dokumentaciq pregledai PawnAMove
             if (peshkaD.Y + dirY < 0 || peshkaD.Y + dirY > matrix.GetLength(0) - 1)
             {
