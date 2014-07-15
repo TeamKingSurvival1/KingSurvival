@@ -7,7 +7,7 @@
     /// </summary>
     internal class Position
     {
-        const int LowestGameBoardCoordinate = 1; // this means that a game board class must be extracted
+        const int LowestGameBoardCoordinate = 0; // this means that a game board class must be extracted
         const int HighestGameBoardCoordinate = 8;
 
         private int x;
