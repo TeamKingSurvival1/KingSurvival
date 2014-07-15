@@ -15,6 +15,7 @@
         static Pawn peshkaC = new Pawn(5, 0);
 
         static Pawn peshkaD = new Pawn(7, 0);
+        // Test Commit Ivan
 
         static bool isKingTurn = true;
 
