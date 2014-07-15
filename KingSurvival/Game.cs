@@ -9,7 +9,7 @@ namespace KingSurvival
     {
         static void Main()
         {
-            Engine engine = new Engine();
+            var engine = new Engine();
             engine.Run();
         }
     }

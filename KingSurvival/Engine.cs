@@ -4,20 +4,20 @@
 
     public class Engine
     {
-        static int size = 8;
-        static King car = new King(4, 7);
+        int size = 8;
+        King car = new King(4, 7);
 
 
-        static Pawn peshkaA = new Pawn(1, 0);
+        Pawn peshkaA = new Pawn(1, 0);
 
-        static Pawn peshkaB = new Pawn(3, 0);
+        Pawn peshkaB = new Pawn(3, 0);
 
-        static Pawn peshkaC = new Pawn(5, 0);
+        Pawn peshkaC = new Pawn(5, 0);
 
-        static Pawn peshkaD = new Pawn(7, 0);
+        Pawn peshkaD = new Pawn(7, 0);
         // Test Commit Ivan
 
-        static bool isKingTurn = true;
+        bool isKingTurn = true;
 
         public void Run()
         {
