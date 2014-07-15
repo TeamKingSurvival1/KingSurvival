@@ -4,9 +4,9 @@
     {
         private Position position;
 
-        public Pawn(int x, int y)
+        public Pawn(int initialX, int initialY)
         {
-            position = new Position(x, y);
+            position = new Position(initialX, initialY);
         }
 
         internal override Position Position

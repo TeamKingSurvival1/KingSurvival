@@ -4,24 +4,24 @@
 
     public class Engine
     {
-        int size = 8;
-        King car = new King(4, 7);
+        // The game is played on a standard chess-board of size 8 x 8 cells.
+        int gameBoardSize = 8;
+        King theKing = new King(4, 7);
 
 
-        Pawn peshkaA = new Pawn(1, 0);
+        Pawn pawnA = new Pawn(1, 0);
 
-        Pawn peshkaB = new Pawn(3, 0);
+        Pawn pawnB = new Pawn(3, 0);
 
-        Pawn peshkaC = new Pawn(5, 0);
+        Pawn pawnC = new Pawn(5, 0);
 
-        Pawn peshkaD = new Pawn(7, 0);
-        // Test Commit Ivan
+        Pawn pawnD = new Pawn(7, 0);
 
-        bool isKingTurn = true;
+        bool isKingsTurn = true;
 
         public void Run()
         {
-            char[,] matrica = new char[,]   {{'+','-','+','-','+','-','+','-'},
+            char[,] gameBoard = new char[,]   {{'+','-','+','-','+','-','+','-'},
                                             {'-','+','-','+','-','+','-','+'},
                                             {'+','-','+','-','+','-','+','-'},
                                             {'-','+','-','+','-','+','-','+'},
@@ -31,46 +31,46 @@
                                             {'-','+','-','+','-','+','-','+'}};
 
 
-            matrica[peshkaA.Position.Y, peshkaA.Position.X] = 'A';
-            matrica[peshkaB.Position.Y, peshkaB.Position.X] = 'B';
-            matrica[peshkaC.Position.Y, peshkaC.Position.X] = 'C';
-            matrica[peshkaD.Position.Y, peshkaD.Position.X] = 'D';
-            matrica[car.Position.Y, car.Position.X] = 'K';
-            ConsoleRenderer.Instance.Render(matrica);
-            bool pobedaPeshki = false;
+            gameBoard[pawnA.Position.Y, pawnA.Position.X] = 'A';
+            gameBoard[pawnB.Position.Y, pawnB.Position.X] = 'B';
+            gameBoard[pawnC.Position.Y, pawnC.Position.X] = 'C';
+            gameBoard[pawnD.Position.Y, pawnD.Position.X] = 'D';
+            gameBoard[theKing.Position.Y, theKing.Position.X] = 'K';
+            ConsoleRenderer.Instance.Render(gameBoard);
+            bool pawnsWin = false;
 
-            while (car.Position.Y > 0 && car.Position.Y < size && !pobedaPeshki)
+            while (theKing.Position.Y > 0 && theKing.Position.Y < gameBoardSize && !pawnsWin)
             {
-                isKingTurn = true;
-                while (isKingTurn)
+                isKingsTurn = true;
+                while (isKingsTurn)
                 {
-                    isKingTurn = false;
+                    isKingsTurn = false;
 
-                    ConsoleRenderer.Instance.Render(matrica);
+                    ConsoleRenderer.Instance.Render(gameBoard);
                     Console.Write("King`s Turn:");
-                    string direction = Console.ReadLine();
+                    string moveDirection = Console.ReadLine();
 
-                    if (direction == "")
+                    if (moveDirection == "")
                     {
-                        isKingTurn = true;
+                        isKingsTurn = true;
                         continue;
                     }
 
-                    direction = direction.ToUpper();
+                    moveDirection = moveDirection.ToUpper();
 
-                    switch (direction)
+                    switch (moveDirection)
                     {
-                        case "KUL": car.Move();
+                        case "KUL": theKing.Move();
                             break;
-                        case "KUR": car.Move();
+                        case "KUR": theKing.Move();
                             break;
-                        case "KDL": car.Move();
+                        case "KDL": theKing.Move();
                             break;
-                        case "KDR": car.Move();
+                        case "KDR": theKing.Move();
                             break;
                         default:
                             {
-                                isKingTurn = true;
+                                isKingsTurn = true;
                                 Console.WriteLine("Invalid input!");
                                 Console.WriteLine("**Press a key to continue**");
                                 Console.ReadKey();
@@ -80,42 +80,42 @@
                     }
                 }
 
-                while (!isKingTurn)
+                while (!isKingsTurn)
                 {
-                    isKingTurn = true;
-                    ConsoleRenderer.Instance.Render(matrica);
+                    isKingsTurn = true;
+                    ConsoleRenderer.Instance.Render(gameBoard);
                     Console.Write("Pawn`s Turn:");
-                    string direction = Console.ReadLine();
+                    string moveDirection = Console.ReadLine();
 
-                    if (direction == "")
+                    if (moveDirection == "")
                     {
-                        isKingTurn = false;
+                        isKingsTurn = false;
                         continue;
                     }
 
-                    direction = direction.ToUpper();
+                    moveDirection = moveDirection.ToUpper();
 
-                    switch (direction)
+                    switch (moveDirection)
                     {
-                        case "ADR": peshkaA.Move();
+                        case "ADR": pawnA.Move();
                             break;
-                        case "ADL": peshkaA.Move();
+                        case "ADL": pawnA.Move();
                             break;
-                        case "BDL": peshkaB.Move();
+                        case "BDL": pawnB.Move();
                             break;
-                        case "BDR": peshkaB.Move();
+                        case "BDR": pawnB.Move();
                             break;
-                        case "CDL": peshkaC.Move();
+                        case "CDL": pawnC.Move();
                             break;
-                        case "CDR": peshkaC.Move();
+                        case "CDR": pawnC.Move();
                             break;
-                        case "DDR": peshkaD.Move();
+                        case "DDR": pawnD.Move();
                             break;
-                        case "DDL": peshkaD.Move();
+                        case "DDL": pawnD.Move();
                             break;
                         default:
                             {
-                                isKingTurn = false;
+                                isKingsTurn = false;
                                 Console.WriteLine("Invalid input!");
                                 Console.WriteLine("**Press a key to continue**");
                                 Console.ReadKey();
@@ -123,17 +123,17 @@
                             }
                     }
 
-                    ConsoleRenderer.Instance.Render(matrica);
+                    ConsoleRenderer.Instance.Render(gameBoard);
                 }
             }
 
-            if (pobedaPeshki)
+            if (pawnsWin)
             {
-                Console.WriteLine("Pawn`s win!");
+                Console.WriteLine("Pawns win!");
             }
             else
             {
-                Console.WriteLine("King`s win!");
+                Console.WriteLine("King wins!");
             }
         }
     }
