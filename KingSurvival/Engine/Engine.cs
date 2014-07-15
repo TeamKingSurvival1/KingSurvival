@@ -5,8 +5,8 @@
     public class Engine
     {
         // The game is played on a standard chess-board of size 8 x 8 cells.
-        int gameBoardSize = 8;
-        King theKing = new King(4, 7);
+        King king = new King(4, 7);
+        private Board gameBoard;
 
 
         Pawn pawnA = new Pawn(1, 0);
@@ -19,34 +19,29 @@
 
         bool isKingsTurn = true;
 
+        internal Engine()
+        {
+            gameBoard = new Board();
+        }
+
         public void Run()
         {
-            char[,] gameBoard = new char[,]   {{'+','-','+','-','+','-','+','-'},
-                                            {'-','+','-','+','-','+','-','+'},
-                                            {'+','-','+','-','+','-','+','-'},
-                                            {'-','+','-','+','-','+','-','+'},
-                                            {'+','-','+','-','+','-','+','-'},
-                                            {'-','+','-','+','-','+','-','+'},
-                                            {'+','-','+','-','+','-','+','-'},
-                                            {'-','+','-','+','-','+','-','+'}};
-
-
-            gameBoard[pawnA.Position.Y, pawnA.Position.X] = 'A';
-            gameBoard[pawnB.Position.Y, pawnB.Position.X] = 'B';
-            gameBoard[pawnC.Position.Y, pawnC.Position.X] = 'C';
-            gameBoard[pawnD.Position.Y, pawnD.Position.X] = 'D';
-            gameBoard[theKing.Position.Y, theKing.Position.X] = 'K';
-            ConsoleRenderer.Instance.Render(gameBoard);
+            gameBoard.GameField[pawnA.Position.Y, pawnA.Position.X] = 'A';
+            gameBoard.GameField[pawnB.Position.Y, pawnB.Position.X] = 'B';
+            gameBoard.GameField[pawnC.Position.Y, pawnC.Position.X] = 'C';
+            gameBoard.GameField[pawnD.Position.Y, pawnD.Position.X] = 'D';
+            gameBoard.GameField[king.Position.Y, king.Position.X] = 'K';
+            ConsoleRenderer.Instance.Render(gameBoard.GameField);
             bool pawnsWin = false;
 
-            while (theKing.Position.Y > 0 && theKing.Position.Y < gameBoardSize && !pawnsWin)
+            while (king.Position.Y > 0 && king.Position.Y < Board.BoardSize && !pawnsWin)
             {
                 isKingsTurn = true;
                 while (isKingsTurn)
                 {
                     isKingsTurn = false;
 
-                    ConsoleRenderer.Instance.Render(gameBoard);
+                    ConsoleRenderer.Instance.Render(gameBoard.GameField);
                     Console.Write("King`s Turn:");
                     string moveDirection = Console.ReadLine();
 
@@ -60,13 +55,13 @@
 
                     switch (moveDirection)
                     {
-                        case "KUL": theKing.Move();
+                        case "KUL": king.Move();
                             break;
-                        case "KUR": theKing.Move();
+                        case "KUR": king.Move();
                             break;
-                        case "KDL": theKing.Move();
+                        case "KDL": king.Move();
                             break;
-                        case "KDR": theKing.Move();
+                        case "KDR": king.Move();
                             break;
                         default:
                             {
@@ -83,7 +78,7 @@
                 while (!isKingsTurn)
                 {
                     isKingsTurn = true;
-                    ConsoleRenderer.Instance.Render(gameBoard);
+                    ConsoleRenderer.Instance.Render(gameBoard.GameField);
                     Console.Write("Pawn`s Turn:");
                     string moveDirection = Console.ReadLine();
 
@@ -123,7 +118,7 @@
                             }
                     }
 
-                    ConsoleRenderer.Instance.Render(gameBoard);
+                    ConsoleRenderer.Instance.Render(gameBoard.GameField);
                 }
             }
 
