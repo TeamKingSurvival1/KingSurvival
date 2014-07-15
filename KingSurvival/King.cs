@@ -1,9 +1,8 @@
 ﻿namespace KingSurvival
 {
-    using System;
-
-    internal class King
+    internal class King : Piece
     {
+<<<<<<< HEAD
         private int x;
         private int y;
 
@@ -13,15 +12,23 @@
             this.x = 0;
             this.y = 0;
         }
+=======
+        private Position position;
+>>>>>>> 3f4ffc5009ed25a8071dc94815964ca91689ded7
 
         public King(int initialXCoordinate, int initialYCoordinate)
         {
+<<<<<<< HEAD
             this.x = initialXCoordinate;
             this.y = initialYCoordinate;
+=======
+            position = new Position(x, y);
+>>>>>>> 3f4ffc5009ed25a8071dc94815964ca91689ded7
         }
 
-        public int X
+        internal override Position Position
         {
+<<<<<<< HEAD
             get { return x; }
             set { x = value; }
         }
@@ -70,8 +77,15 @@
             {
                 gameBoard[theKing.Y + verticalDirection, theKing.X + horizontalDirection] = 'K';
                 gameBoard[pawnC.Y, pawnC.X] = '-';
+=======
+            get
+            {
+                return this.position;
+>>>>>>> 3f4ffc5009ed25a8071dc94815964ca91689ded7
             }
+        }
 
+<<<<<<< HEAD
             if (gameBoard[theKing.Y + verticalDirection, theKing.X + horizontalDirection] == 'D')
             {
                 gameBoard[theKing.Y + verticalDirection, theKing.X + horizontalDirection] = 'K';
@@ -85,6 +99,10 @@
             theKing.X += horizontalDirection;
 
             return;
+=======
+        internal override void Move()
+        {
+>>>>>>> 3f4ffc5009ed25a8071dc94815964ca91689ded7
         }
     }
 }
