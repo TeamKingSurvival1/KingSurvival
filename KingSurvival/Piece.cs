@@ -1,9 +1,9 @@
 ﻿namespace KingSurvival
 {
-    internal abstract class Piece
+    internal abstract class Piece: IMoveable
     {
         internal abstract Position Position { get; }
 
-        internal abstract void Move();
+        public abstract void Move();
     }
 }

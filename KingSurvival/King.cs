@@ -17,7 +17,7 @@
             }
         }
 
-        internal override void Move()
+        public override void Move()
         {
         }
     }
