@@ -4,6 +4,6 @@
     {
         internal abstract Position Position { get; }
 
-        public abstract void Move();
+        public abstract void Move(int dirX, int dirY);
     }
 }
