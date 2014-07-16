@@ -17,7 +17,7 @@
             }
         }
 
-        public override void Move()
+        public override void Move(int dirX, int dirY)
         {
         }
     }
