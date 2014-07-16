@@ -7,17 +7,17 @@
         King king = new King(4, 7);
         private Board gameBoard;
 
-        Pawn pawnA = new Pawn(1, 0);
+        Pawn pawnA = new Pawn('A', 1, 0);
 
-        Pawn pawnB = new Pawn(3, 0);
+        Pawn pawnB = new Pawn('B', 3, 0);
 
-        Pawn pawnC = new Pawn(5, 0);
+        Pawn pawnC = new Pawn('C', 5, 0);
 
-        Pawn pawnD = new Pawn(7, 0);
+        Pawn pawnD = new Pawn('D', 7, 0);
 
         bool isKingsTurn = true;
 
-        internal bool IsValidMove(Piece piece, int dirX, int dirY)
+        internal bool IsInRangeMove(Piece piece, int dirX, int dirY)
         {
             int fieldSize = Board.BoardSize - 1;
 
@@ -39,9 +39,9 @@
             return false;
         }
 
-        internal bool IsValidPieceMove(Piece piece, int dirX, int dirY)
+        internal bool IsValidMove(Piece piece, int dirX, int dirY)
         {
-            if (!IsValidMove(piece, dirX, dirY) || !IsAvailableCell(piece, dirX, dirY))
+            if (!IsInRangeMove(piece, dirX, dirY) || !IsAvailableCell(piece, dirX, dirY))
             {
                 return false;
             }
@@ -57,15 +57,29 @@
 
         internal void UpdateKingsPosition(int dirX, int dirY)
         {
-            if (!IsValidPieceMove(king, dirX, dirY))
+            if (!IsValidMove(king, dirX, dirY))
             {
                 PrintInvalidMoveMessage();
                 isKingsTurn = true;
             }
             else
             {
-                UpdateBoard(king, dirX, dirY, 'K');
+                UpdateBoard(king, dirX, dirY, king.Symbol);
                 king.Move(dirX, dirY);
+            }
+        }
+
+        internal void UpdatePawnsPosition(Piece piece, int dirX, int dirY)
+        {
+            if (!IsValidMove(piece, dirX, dirY))
+            {
+                PrintInvalidMoveMessage();
+                isKingsTurn = false;
+            }
+            else
+            {
+                UpdateBoard(piece, dirX, dirY, piece.Symbol);
+                piece.Move(dirX, dirY);
             }
         }
 
@@ -74,8 +88,7 @@
             gameBoard[piece.Position.Y, piece.Position.X] = '-';
             gameBoard[piece.Position.Y + dirY, piece.Position.X + dirX] = pieceSymbol;
         }
-
-
+        
         internal Engine()
         {
             gameBoard = new Board();
@@ -83,11 +96,12 @@
 
         public void Run()
         {
-            gameBoard[pawnA.Position.Y, pawnA.Position.X] = 'A';
-            gameBoard[pawnB.Position.Y, pawnB.Position.X] = 'B';
-            gameBoard[pawnC.Position.Y, pawnC.Position.X] = 'C';
-            gameBoard[pawnD.Position.Y, pawnD.Position.X] = 'D';
-            gameBoard[king.Position.Y, king.Position.X] = 'K';
+            gameBoard[pawnA.Position.Y, pawnA.Position.X] = pawnA.Symbol;
+            gameBoard[pawnB.Position.Y, pawnB.Position.X] = pawnB.Symbol;
+            gameBoard[pawnC.Position.Y, pawnC.Position.X] = pawnC.Symbol;
+            gameBoard[pawnD.Position.Y, pawnD.Position.X] = pawnD.Symbol;
+            gameBoard[king.Position.Y, king.Position.X] = king.Symbol;
+
             ConsoleRenderer.Instance.Render(gameBoard.GameField);
             bool pawnsWin = false;
 
@@ -116,8 +130,6 @@
                     switch (moveDirection)
                     {
                         case "KUL":
-
-
                             UpdateKingsPosition(-1, -1);                            
                             break;
                         case "KUR":
@@ -137,7 +149,6 @@
                                 Console.ReadKey();
                                 break;
                             }
-
                     }
 
                 }
@@ -160,21 +171,29 @@
 
                     switch (moveDirection)
                     {
-                        case "ADR": pawnA.Move(1, 1);
+                        case "ADR":
+                            UpdatePawnsPosition(pawnA, 1, 1);
                             break;
-                        case "ADL": pawnA.Move(-1, 1);
+                        case "ADL":
+                            UpdatePawnsPosition(pawnA, -1, 1);
                             break;
-                        case "BDL": pawnB.Move(-1, 1);
+                        case "BDL":
+                            UpdatePawnsPosition(pawnB, -1, 1);
                             break;
-                        case "BDR": pawnB.Move(1, 1);
+                        case "BDR":
+                            UpdatePawnsPosition(pawnB, 1, 1);
                             break;
-                        case "CDL": pawnC.Move(-1, 1);
+                        case "CDL":
+                            UpdatePawnsPosition(pawnC, -1, 1);
                             break;
-                        case "CDR": pawnC.Move(1, 1);
+                        case "CDR":
+                            UpdatePawnsPosition(pawnC, 1, 1);
                             break;
-                        case "DDR": pawnD.Move(1, 1);
+                        case "DDR":
+                            UpdatePawnsPosition(pawnD, 1, 1);
                             break;
-                        case "DDL": pawnD.Move(-1, 1);
+                        case "DDL":
+                            UpdatePawnsPosition(pawnD, -1, 1);
                             break;
                         default:
                             {
