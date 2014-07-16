@@ -1,7 +1,7 @@
 ﻿using System;
 namespace KingSurvival
 {
-    internal class Board
+    public class Board
     {
         // The game is played on a standard chess-board of size 8 x 8 cells (half of them - white, the other half - black).
         public const int BoardSize = 8;
@@ -13,7 +13,7 @@ namespace KingSurvival
 
         internal Board()
         {
-            gameField = new char[BoardSize, BoardSize];
+            this.gameField = new char[BoardSize, BoardSize];
 
             FillBoard();
         }
@@ -23,14 +23,33 @@ namespace KingSurvival
             get
             {
                 char[,] copyOfGameField = new char[BoardSize, BoardSize];
-                Array.Copy(this.gameField, copyOfGameField, gameField.Length);
+                Array.Copy(this.gameField, copyOfGameField, this.gameField.Length);
 
                 return copyOfGameField;
             }
 
+            //set
+            //{
+            //    this.gameField = value;
+            //}
+        }
+
+        /// <summary>
+        /// Indexer to access game field cells
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="col"></param>
+        /// <returns></returns>
+        internal char this[int row, int col]
+        {
+            get
+            {
+                return this.gameField[row, col];
+            }
+
             set
             {
-                this.gameField = value;
+                this.gameField[row, col] = value;
             }
         }
 
