@@ -4,16 +4,16 @@
 
     public class Engine
     {
-        King king = new King(4, 7);
+        King king = new King(3, 7);
         private Board gameBoard;
 
-        Pawn pawnA = new Pawn('A', 1, 0);
+        Pawn pawnA = new Pawn('A', 0, 0);
 
-        Pawn pawnB = new Pawn('B', 3, 0);
+        Pawn pawnB = new Pawn('B', 2, 0);
 
-        Pawn pawnC = new Pawn('C', 5, 0);
+        Pawn pawnC = new Pawn('C', 4, 0);
 
-        Pawn pawnD = new Pawn('D', 7, 0);
+        Pawn pawnD = new Pawn('D', 6, 0);
 
         bool isKingsTurn = true;
 
@@ -85,7 +85,7 @@
 
         internal void UpdateBoard(Piece piece, int dirX, int dirY, char pieceSymbol)
         {
-            gameBoard[piece.Position.Y, piece.Position.X] = '-';
+            gameBoard[piece.Position.Y, piece.Position.X] = '+';
             gameBoard[piece.Position.Y + dirY, piece.Position.X + dirX] = pieceSymbol;
         }
         
