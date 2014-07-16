@@ -4,10 +4,8 @@
 
     public class Engine
     {
-        // The game is played on a standard chess-board of size 8 x 8 cells.
         King king = new King(4, 7);
         private Board gameBoard;
-
 
         Pawn pawnA = new Pawn(1, 0);
 
@@ -93,12 +91,10 @@
             ConsoleRenderer.Instance.Render(gameBoard.GameField);
             bool pawnsWin = false;
 
-
-
-
-
+            //Game Process - switching turns
             while (king.Position.Y > 0 && king.Position.Y < Board.BoardSize && !pawnsWin)
             {
+                //King`s Turn
                 isKingsTurn = true;
 
                 while (isKingsTurn)
@@ -146,6 +142,7 @@
 
                 }
 
+                //Pawns` Turn  
                 while (!isKingsTurn)
                 {
                     isKingsTurn = true;
@@ -193,6 +190,7 @@
                 }
             }
 
+            //End of game
             if (pawnsWin)
             {
                 Console.WriteLine("Pawns win!");
