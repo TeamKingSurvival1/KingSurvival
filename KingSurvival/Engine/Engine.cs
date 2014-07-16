@@ -7,13 +7,7 @@
         King king = new King(3, 7);
         private Board gameBoard;
 
-        Pawn pawnA = new Pawn('A', 0, 0);
-
-        Pawn pawnB = new Pawn('B', 2, 0);
-
-        Pawn pawnC = new Pawn('C', 4, 0);
-
-        Pawn pawnD = new Pawn('D', 6, 0);
+        Piece[] pawns = { new Pawn('A', 0, 0), new Pawn('B', 2, 0), new Pawn('C', 4, 0), new Pawn('D', 6, 0) };
 
         bool isKingsTurn = true;
 
@@ -67,7 +61,7 @@
                 UpdateBoard(king, dirX, dirY, king.Symbol);
                 king.Move(dirX, dirY);
             }
-        }
+        }        
 
         internal void UpdatePawnsPosition(Piece piece, int dirX, int dirY)
         {
@@ -88,6 +82,31 @@
             gameBoard[piece.Position.Y, piece.Position.X] = '+';
             gameBoard[piece.Position.Y + dirY, piece.Position.X + dirX] = pieceSymbol;
         }
+
+        internal bool IsValidCommandSymol(char commandSymbol)
+        {
+            for (int i = 0; i < pawns.Length; i++)
+            {
+                if (pawns[i].Symbol == commandSymbol)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        internal Piece GetCurrentPawn(char commandSymbol)
+        {
+            for (int i = 0; i < pawns.Length; i++)
+            {
+                if (pawns[i].Symbol == commandSymbol)
+                {
+                    return pawns[i];
+                }
+
+            }
+            throw new ArgumentOutOfRangeException("Invalid command!");
+        }
         
         internal Engine()
         {
@@ -96,10 +115,12 @@
 
         public void Run()
         {
-            gameBoard[pawnA.Position.Y, pawnA.Position.X] = pawnA.Symbol;
-            gameBoard[pawnB.Position.Y, pawnB.Position.X] = pawnB.Symbol;
-            gameBoard[pawnC.Position.Y, pawnC.Position.X] = pawnC.Symbol;
-            gameBoard[pawnD.Position.Y, pawnD.Position.X] = pawnD.Symbol;
+            for (int i = 0; i < pawns.Length; i++)
+            {
+                Piece currentPawn = pawns[i];
+                gameBoard[currentPawn.Position.Y, currentPawn.Position.X] = currentPawn.Symbol;
+            }
+          
             gameBoard[king.Position.Y, king.Position.X] = king.Symbol;
 
             ConsoleRenderer.Instance.Render(gameBoard.GameField);
@@ -144,9 +165,7 @@
                         default:
                             {
                                 isKingsTurn = true;
-                                Console.WriteLine("Invalid input!");
-                                Console.WriteLine("**Press a key to continue**");
-                                Console.ReadKey();
+                                PrintInvalidMoveMessage();
                                 break;
                             }
                     }
@@ -169,38 +188,33 @@
 
                     moveDirection = moveDirection.ToUpper();
 
-                    switch (moveDirection)
+                    char commandSymbol = moveDirection[0];
+                    string commandDirection = moveDirection[1].ToString() + moveDirection[2].ToString();
+                    Piece currentPawn;
+
+                    if(!IsValidCommandSymol(commandSymbol))
                     {
-                        case "ADR":
-                            UpdatePawnsPosition(pawnA, 1, 1);
+                        isKingsTurn = false;                        
+                        PrintInvalidMoveMessage();
+                        continue;
+                    }
+                    else
+                    {
+                        currentPawn = GetCurrentPawn(commandSymbol);                        
+                    }                    
+
+                    switch (commandDirection)
+                    {
+                        case "DR":
+                            UpdatePawnsPosition(currentPawn, 1, 1);
                             break;
-                        case "ADL":
-                            UpdatePawnsPosition(pawnA, -1, 1);
-                            break;
-                        case "BDL":
-                            UpdatePawnsPosition(pawnB, -1, 1);
-                            break;
-                        case "BDR":
-                            UpdatePawnsPosition(pawnB, 1, 1);
-                            break;
-                        case "CDL":
-                            UpdatePawnsPosition(pawnC, -1, 1);
-                            break;
-                        case "CDR":
-                            UpdatePawnsPosition(pawnC, 1, 1);
-                            break;
-                        case "DDR":
-                            UpdatePawnsPosition(pawnD, 1, 1);
-                            break;
-                        case "DDL":
-                            UpdatePawnsPosition(pawnD, -1, 1);
-                            break;
+                        case "DL":
+                            UpdatePawnsPosition(currentPawn, -1, 1);
+                            break;                        
                         default:
                             {
                                 isKingsTurn = false;
-                                Console.WriteLine("Invalid input!");
-                                Console.WriteLine("**Press a key to continue**");
-                                Console.ReadKey();
+                                PrintInvalidMoveMessage();
                                 break;
                             }
                     }
