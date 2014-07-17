@@ -4,10 +4,15 @@
 
     public class Engine
     {
-        King king = new King(3, 7);
         private Board gameBoard;
-
-        Piece[] pawns = { new Pawn('A', 0, 0), new Pawn('B', 2, 0), new Pawn('C', 4, 0), new Pawn('D', 6, 0) };
+        private King king;
+        private Piece[] pawns;
+        public Engine()
+        {
+            this.gameBoard = new Board();
+            this.king = new King(3, 7);
+            this.pawns = new Piece[] { new Pawn('A', 0, 0), new Pawn('B', 2, 0), new Pawn('C', 4, 0), new Pawn('D', 6, 0) };
+        }
 
         bool isKingsTurn = true;
 
@@ -108,11 +113,6 @@
             throw new ArgumentOutOfRangeException("Invalid command!");
         }
         
-        internal Engine()
-        {
-            gameBoard = new Board();
-        }
-
         public void Run()
         {
             for (int i = 0; i < pawns.Length; i++)
