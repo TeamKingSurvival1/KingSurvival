@@ -55,7 +55,6 @@
     <Compile Include="Game Classes\Piece.cs" />
     <Compile Include="Game Classes\Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Engine\Renderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
