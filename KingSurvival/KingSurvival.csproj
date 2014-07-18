@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Engine\Command.cs" />
     <Compile Include="Game Classes\Board.cs" />
-    <Compile Include="Enums.cs" />
     <Compile Include="Game Classes\Direction.cs" />
     <Compile Include="Interfaces\IMoveable.cs" />
     <Compile Include="Game Classes\King.cs" />

@@ -1,13 +1,14 @@
 ﻿namespace KingSurvival
 {
-using System;
+    using System;
+
     public class Board
     {
         // The game is played on a standard chess-board of size 8 x 8 cells (half of them - white, the other half - black).
         public const int BoardSize = 8;
         private const char EmptyWhiteCell = '+';
         private const char EmptyBlackCell = '-';
-        
+
         private char[,] gameField;
 
         public Board()
@@ -59,7 +60,7 @@ using System;
 
         public bool IsCellAvailable(int x, int y)
         {
-            if(this[x, y] == EmptyWhiteCell)
+            if (this[x, y] == EmptyWhiteCell)
             {
                 return true;
             }

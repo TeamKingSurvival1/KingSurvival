@@ -94,10 +94,6 @@
             {
                 return false;
             }
-            // Check if chosen symbol is valid (consider isKingsTurn too)
-            // Get current piece
-            // Check if the move for that piece is valid (consider if its 
-            // Methods - GetCurrentPiece(symbol, isKingsTurn), IsMoveValid(currentPiece, direction) with method IsCellAvailable
 
             return true;
         }
@@ -154,7 +150,20 @@
             return currentPiece;
         }
 
-        private bool IsInRangeMove(int newCellX, int newCellY)
+        private bool IsMoveValid(Piece currentPiece, Direction currentDirection)
+        {
+            int newCellX = currentPiece.Position.X + currentDirection.XUpdateValue;
+            int newCellY = currentPiece.Position.Y + currentDirection.YUpdateValue;
+
+            if (!IsMoveInValidRange(newCellX, newCellY) || !this.board.IsCellAvailable(newCellX, newCellY))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool IsMoveInValidRange(int newCellX, int newCellY)
         {
             int fieldSize = Board.BoardSize - 1;
 
@@ -163,50 +172,18 @@
             {
                 return false;
             }
+
             return true;
         }
 
-        private bool IsMoveValid(Piece currentPiece, Direction currentDirection)
-        {
-            int newCellX = currentPiece.Position.X + currentDirection.XUpdateValue;
-            int newCellY = currentPiece.Position.Y + currentDirection.YUpdateValue;
-
-            if (!IsInRangeMove(newCellX, newCellY) || !this.board.IsCellAvailable(newCellX, newCellY))
-            {
-                return false;
-            }
-            return true;
-        }
 
         private void ProcessCommand(Command currentCommand, bool isKingsTurn)
         {
-            if (isKingsTurn)
-            {
-                this.board.ClearBoardCell(this.king.Position.X, this.king.Position.Y);
-                this.king.Move(currentCommand.MoveDirection);
-                this.board.PlacePieceOnBoard(this.king.Position.X, this.king.Position.Y, this.king.Symbol);
-            }
-            else
-            {
-                Piece currentPawn = GetCurrentPawn(currentCommand.TargetSymbol);
-                this.board.ClearBoardCell(currentPawn.Position.X, currentPawn.Position.Y);
-                currentPawn.Move(currentCommand.MoveDirection);
-                this.board.PlacePieceOnBoard(currentPawn.Position.X, currentPawn.Position.Y, currentPawn.Symbol);
-            }
-        }
+            Piece currentPiece = GetCurrentPiece(currentCommand.TargetSymbol);
 
-        internal Piece GetCurrentPawn(char commandSymbol)
-        {
-            for (int i = 0; i < this.pawns.Length; i++)
-            {
-                if (this.pawns[i].Symbol == commandSymbol)
-                {
-                    return this.pawns[i];
-                }
-
-            }
-
-            throw new ArgumentOutOfRangeException("Invalid command!");
+            this.board.ClearBoardCell(currentPiece.Position.X, currentPiece.Position.Y);
+            currentPiece.Move(currentCommand.MoveDirection);
+            this.board.PlacePieceOnBoard(currentPiece.Position.X, currentPiece.Position.Y, currentPiece.Symbol);
         }
     }
 }
