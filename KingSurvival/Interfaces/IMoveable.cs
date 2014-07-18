@@ -2,6 +2,6 @@
 {
     public interface IMoveable
     {
-        void Move(int dirX, int dirY);
+        void Move(Direction moveDirection);
     }
 }

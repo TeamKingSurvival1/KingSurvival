@@ -22,7 +22,6 @@
 
             private set
             {
-                // TODO: Validation of target symbol (A/B/C/D/K)
                 this.targetSymbol = value;
             }
         }
@@ -48,10 +47,12 @@
         private void TranslateInput(string input)
         {
             // TODO: Remove empty spaces
-            this.TargetSymbol = input[0];
+            string inputUppercase = input.ToUpper();
 
-            char verticalDirectionLetter = input[1];
-            char horizontalDirectionLetter = input[2];
+            this.TargetSymbol = inputUppercase[0];
+
+            char verticalDirectionLetter = inputUppercase[1];
+            char horizontalDirectionLetter = inputUppercase[2];
             
             this.MoveDirection = new Direction(verticalDirectionLetter, horizontalDirectionLetter);
         }

@@ -28,12 +28,5 @@
                 return this.position;
             }
         }
-
-        public override void Move(int dirX, int dirY)
-        {
-            this.Position.Y += dirY;
-            this.Position.X += dirX;
-            return;
-        }
     }
 }

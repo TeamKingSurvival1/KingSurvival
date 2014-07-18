@@ -1,24 +1,23 @@
-﻿using System;
-namespace KingSurvival
+﻿namespace KingSurvival
 {
+using System;
     public class Board
     {
         // The game is played on a standard chess-board of size 8 x 8 cells (half of them - white, the other half - black).
         public const int BoardSize = 8;
-
         private const char EmptyWhiteCell = '+';
         private const char EmptyBlackCell = '-';
-
+        
         private char[,] gameField;
 
-        internal Board()
+        public Board()
         {
             this.gameField = new char[BoardSize, BoardSize];
 
-            FillBoard();
+            InitializeEmptyBoardCells();
         }
 
-        internal char[,] GameField
+        public char[,] GameField
         {
             get
             {
@@ -27,11 +26,6 @@ namespace KingSurvival
 
                 return copyOfGameField;
             }
-
-            //set
-            //{
-            //    this.gameField = value;
-            //}
         }
 
         /// <summary>
@@ -40,20 +34,30 @@ namespace KingSurvival
         /// <param name="row"></param>
         /// <param name="col"></param>
         /// <returns></returns>
-        internal char this[int row, int col]
+        public char this[int row, int col]
         {
             get
             {
                 return this.gameField[row, col];
             }
 
-            set
+            private set
             {
                 this.gameField[row, col] = value;
             }
         }
 
-        private void FillBoard()
+        public void PlacePieceOnBoard(int row, int col, char pieceSymbol)
+        {
+            this[row, col] = pieceSymbol;
+        }
+
+        public void ClearBoardCell(int row, int col)
+        {
+            this.gameField[row, col] = EmptyWhiteCell;
+        }
+
+        private void InitializeEmptyBoardCells()
         {
             for (int row = 0; row < BoardSize; row++)
             {
@@ -71,19 +75,5 @@ namespace KingSurvival
                 }
             }
         }
-
-
-        // Drawing method just for testing
-        //public static void drawBoard()
-        //{
-        //    for (int i = 0; i < BoardSize; i++)
-        //    {
-        //        for (int j = 0; j < BoardSize; j++)
-        //        {
-        //            System.Console.Write(gameField[i, j]);
-        //        }
-        //        System.Console.WriteLine();
-        //    }
-        //}
     }
 }

@@ -4,15 +4,16 @@
 
     public class Engine
     {
-        private Board gameBoard;
+        private Board board;
         private King king;
         private Piece[] pawns;
         private IRenderer renderer;
+        private const string KingsTurnMessage = "King's Turn: ";
+        private const string PawnsTurnMessage = "Pawn's Turn: ";
 
-        // TODO: Implement Singleton
         public Engine()
         {
-            this.gameBoard = new Board();
+            this.board = new Board();
             this.king = new King(3, 7);
             this.pawns = new Piece[] { new Pawn('A', 0, 0), new Pawn('B', 2, 0), new Pawn('C', 4, 0), new Pawn('D', 6, 0) };
             this.renderer = new ConsoleRenderer();
@@ -20,155 +21,72 @@
 
         public void Run()
         {
-            for (int i = 0; i < pawns.Length; i++)
+            bool isKingsTurn = true;
+            bool gameOver = false;
+            bool hasTurnEnded;
+
+            // The main game loop
+            while (!gameOver)
             {
-                Piece currentPawn = pawns[i];
-                gameBoard[currentPawn.Position.Y, currentPawn.Position.X] = currentPawn.Symbol;
-            }
-          
-            gameBoard[king.Position.Y, king.Position.X] = king.Symbol;
+                PlacePiecesOnBoard(this.board, this.pawns, this.king);
+                this.renderer.Render(board.GameField);
+                hasTurnEnded = false;
 
-            this.renderer.Render(gameBoard.GameField);
-            bool pawnsWin = false;
-
-            //Game Process - switching turns
-            while (king.Position.Y > 0 && king.Position.Y < Board.BoardSize && !pawnsWin)
-            {
-                //King`s Turn
-                isKingsTurn = true;
-
-                while (isKingsTurn)
+                while (!hasTurnEnded)
                 {
-                    isKingsTurn = false;
+                    PrintTurnMessage(isKingsTurn);
 
-                    this.renderer.Render(gameBoard.GameField);
-                    Console.Write("King`s Turn:");
-                    string moveDirection = Console.ReadLine();
+                    string playerInput = Console.ReadLine();
+                    Command currentCommand = Command.Parse(playerInput);
 
-                    if (moveDirection == "")
+                    if (!IsCommandValid(currentCommand, isKingsTurn))
                     {
-                        isKingsTurn = true;
-                        continue;
-                    }
-
-                    moveDirection = moveDirection.ToUpper();
-
-                    switch (moveDirection)
-                    {
-                        case "KUL":
-                            UpdateKingsPosition(-1, -1);                            
-                            break;
-                        case "KUR":
-                            UpdateKingsPosition(1, -1);
-                            break;
-                        case "KDL":
-                            UpdateKingsPosition(-1, 1);
-                            break;
-                        case "KDR":
-                            UpdateKingsPosition(1, 1);
-                            break;
-                        default:
-                            {
-                                isKingsTurn = true;
-                                PrintInvalidMoveMessage();
-                                break;
-                            }
-                    }
-
-                }
-
-                //Pawns` Turn  
-                while (!isKingsTurn)
-                {
-                    isKingsTurn = true;
-                    this.renderer.Render(gameBoard.GameField);
-                    Console.Write("Pawn`s Turn:");
-                    string moveDirection = Console.ReadLine();
-
-                    if (moveDirection == "")
-                    {
-                        isKingsTurn = false;
-                        continue;
-                    }
-
-                    moveDirection = moveDirection.ToUpper();
-
-                    char commandSymbol = moveDirection[0];
-                    string commandDirection = moveDirection[1].ToString() + moveDirection[2].ToString();
-                    Piece currentPawn;
-
-                    if(!IsValidCommandSymol(commandSymbol))
-                    {
-                        isKingsTurn = false;                        
                         PrintInvalidMoveMessage();
                         continue;
                     }
-                    else
-                    {
-                        currentPawn = GetCurrentPawn(commandSymbol);                        
-                    }                    
 
-                    switch (commandDirection)
-                    {
-                        case "DR":
-                            UpdatePawnsPosition(currentPawn, 1, 1);
-                            break;
-                        case "DL":
-                            UpdatePawnsPosition(currentPawn, -1, 1);
-                            break;                        
-                        default:
-                            {
-                                isKingsTurn = false;
-                                PrintInvalidMoveMessage();
-                                break;
-                            }
-                    }
+                    ProcessCommand(currentCommand, isKingsTurn);
 
-                    this.renderer.Render(gameBoard.GameField);
+                    isKingsTurn = !isKingsTurn;
+                    hasTurnEnded = true;
+                    //gameOver = IsGameOver();
                 }
             }
 
-            //End of game
-            if (pawnsWin)
+            //PrintWinMessage();
+        }
+
+        private void PlacePiecesOnBoard(Board gameBoard, Piece[] pawns, King king)
+        {
+            for (int i = 0; i < pawns.Length; i++)
             {
-                Console.WriteLine("Pawns win!");
+                Piece currentPawn = pawns[i];
+                this.board.PlacePieceOnBoard(currentPawn.Position.Y, currentPawn.Position.X, currentPawn.Symbol);
+            }
+
+            this.board.PlacePieceOnBoard(king.Position.Y, king.Position.X, king.Symbol);
+        }
+
+        private void PrintTurnMessage(bool isKingsTurn)
+        {
+            if (isKingsTurn)
+            {
+                Console.Write(KingsTurnMessage);
             }
             else
             {
-                Console.WriteLine("King wins!");
+                Console.Write(PawnsTurnMessage);
             }
         }
 
-        bool isKingsTurn = true;
 
-        internal bool IsInRangeMove(Piece piece, int dirX, int dirY)
+        private bool IsCommandValid(Command currentCommand, bool isKingsTurn)
         {
-            int fieldSize = Board.BoardSize - 1;
+            // Check if chosen symbol is valid (consider isKingsTurn too)
+            // Get current piece
+            // Check if the move for that piece is valid (consider if its 
+            // Methods - GetCurrentPiece(symbol, isKingsTurn), IsMoveValid(currentPiece, direction) with method IsCellAvailable
 
-            if (piece.Position.X + dirX < 0 || piece.Position.X + dirX > fieldSize ||
-                piece.Position.Y + dirY < 0 || piece.Position.Y + dirY > fieldSize)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        internal bool IsAvailableCell(Piece piece, int dirX, int dirY)
-        {
-            if (gameBoard[piece.Position.Y + dirY, piece.Position.X + dirX] == '+' ||
-                gameBoard[piece.Position.Y + dirY, piece.Position.X + dirX] == '-')
-            {
-                return true;
-            }
-            return false;
-        }
-
-        internal bool IsValidMove(Piece piece, int dirX, int dirY)
-        {
-            if (!IsInRangeMove(piece, dirX, dirY) || !IsAvailableCell(piece, dirX, dirY))
-            {
-                return false;
-            }
             return true;
         }
 
@@ -179,64 +97,33 @@
             Console.ReadKey();
         }
 
-        internal void UpdateKingsPosition(int dirX, int dirY)
+        private void ProcessCommand(Command currentCommand, bool isKingsTurn)
         {
-            if (!IsValidMove(king, dirX, dirY))
+            if (isKingsTurn)
             {
-                PrintInvalidMoveMessage();
-                isKingsTurn = true;
+                this.board.ClearBoardCell(this.king.Position.Y, this.king.Position.X);
+                this.king.Move(currentCommand.MoveDirection);
             }
             else
             {
-                UpdateBoard(king, dirX, dirY, king.Symbol);
-                king.Move(dirX, dirY);
+                Piece currentPawn = GetCurrentPawn(currentCommand.TargetSymbol);
+                this.board.ClearBoardCell(currentPawn.Position.Y, currentPawn.Position.X);
+                currentPawn.Move(currentCommand.MoveDirection);
             }
-        }        
-
-        internal void UpdatePawnsPosition(Piece piece, int dirX, int dirY)
-        {
-            if (!IsValidMove(piece, dirX, dirY))
-            {
-                PrintInvalidMoveMessage();
-                isKingsTurn = false;
-            }
-            else
-            {
-                UpdateBoard(piece, dirX, dirY, piece.Symbol);
-                piece.Move(dirX, dirY);
-            }
-        }
-
-        internal void UpdateBoard(Piece piece, int dirX, int dirY, char pieceSymbol)
-        {
-            gameBoard[piece.Position.Y, piece.Position.X] = '+';
-            gameBoard[piece.Position.Y + dirY, piece.Position.X + dirX] = pieceSymbol;
-        }
-
-        internal bool IsValidCommandSymol(char commandSymbol)
-        {
-            for (int i = 0; i < pawns.Length; i++)
-            {
-                if (pawns[i].Symbol == commandSymbol)
-                {
-                    return true;
-                }
-            }
-            return false;
         }
 
         internal Piece GetCurrentPawn(char commandSymbol)
         {
-            for (int i = 0; i < pawns.Length; i++)
+            for (int i = 0; i < this.pawns.Length; i++)
             {
-                if (pawns[i].Symbol == commandSymbol)
+                if (this.pawns[i].Symbol == commandSymbol)
                 {
-                    return pawns[i];
+                    return this.pawns[i];
                 }
 
             }
+
             throw new ArgumentOutOfRangeException("Invalid command!");
         }
-        
     }
 }

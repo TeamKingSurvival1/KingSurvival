@@ -1,6 +1,6 @@
 ﻿namespace KingSurvival
 {
-    internal class Direction
+    public class Direction
     {
         private const int MoveDistance = 1;
 
@@ -41,20 +41,20 @@
             // TODO: Extract constants
             if (verticalDirectionLetter == 'U')
             {
-                this.XUpdateValue = MoveDistance;
+                this.YUpdateValue = -MoveDistance;
             }
             else if (verticalDirectionLetter == 'D')
             {
-                this.XUpdateValue = -MoveDistance;
+                this.YUpdateValue = +MoveDistance;
             }
 
             if (horizontalDirectionLetter == 'R')
             {
-                this.YUpdateValue = MoveDistance;
+                this.XUpdateValue = MoveDistance;
             }
             else if (horizontalDirectionLetter == 'L')
             {
-                this.YUpdateValue = -MoveDistance;
+                this.XUpdateValue = -MoveDistance;
             }
         }
     }
