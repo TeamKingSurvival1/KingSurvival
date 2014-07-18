@@ -62,10 +62,10 @@
             for (int i = 0; i < pawns.Length; i++)
             {
                 Piece currentPawn = pawns[i];
-                this.board.PlacePieceOnBoard(currentPawn.Position.Y, currentPawn.Position.X, currentPawn.Symbol);
+                this.board.PlacePieceOnBoard(currentPawn.Position.X, currentPawn.Position.Y, currentPawn.Symbol);
             }
 
-            this.board.PlacePieceOnBoard(king.Position.Y, king.Position.X, king.Symbol);
+            this.board.PlacePieceOnBoard(king.Position.X, king.Position.Y, king.Symbol);
         }
 
         private void PrintTurnMessage(bool isKingsTurn)
@@ -171,7 +171,7 @@
             int newCellX = currentPiece.Position.X + currentDirection.XUpdateValue;
             int newCellY = currentPiece.Position.Y + currentDirection.YUpdateValue;
 
-            if (!IsInRangeMove(newCellX, newCellY) || !this.board.IsCellAvailable(newCellY, newCellX))
+            if (!IsInRangeMove(newCellX, newCellY) || !this.board.IsCellAvailable(newCellX, newCellY))
             {
                 return false;
             }
@@ -182,16 +182,16 @@
         {
             if (isKingsTurn)
             {
-                this.board.ClearBoardCell(this.king.Position.Y, this.king.Position.X);
+                this.board.ClearBoardCell(this.king.Position.X, this.king.Position.Y);
                 this.king.Move(currentCommand.MoveDirection);
-                this.board.PlacePieceOnBoard(this.king.Position.Y, this.king.Position.X, this.king.Symbol);
+                this.board.PlacePieceOnBoard(this.king.Position.X, this.king.Position.Y, this.king.Symbol);
             }
             else
             {
                 Piece currentPawn = GetCurrentPawn(currentCommand.TargetSymbol);
-                this.board.ClearBoardCell(currentPawn.Position.Y, currentPawn.Position.X);
+                this.board.ClearBoardCell(currentPawn.Position.X, currentPawn.Position.Y);
                 currentPawn.Move(currentCommand.MoveDirection);
-                this.board.PlacePieceOnBoard(currentPawn.Position.Y, currentPawn.Position.X, currentPawn.Symbol);
+                this.board.PlacePieceOnBoard(currentPawn.Position.X, currentPawn.Position.Y, currentPawn.Symbol);
             }
         }
 

@@ -34,7 +34,7 @@ using System;
         /// <param name="row"></param>
         /// <param name="col"></param>
         /// <returns></returns>
-        public char this[int row, int col]
+        public char this[int col, int row]
         {
             get
             {
@@ -47,22 +47,23 @@ using System;
             }
         }
 
-        public void PlacePieceOnBoard(int row, int col, char pieceSymbol)
+        public void PlacePieceOnBoard(int x, int y, char pieceSymbol)
         {
-            this[row, col] = pieceSymbol;
+            this[x, y] = pieceSymbol;
         }
 
-        public void ClearBoardCell(int row, int col)
+        public void ClearBoardCell(int x, int y)
         {
-            this.gameField[row, col] = EmptyWhiteCell;
+            this[x, y] = EmptyWhiteCell;
         }
 
-        public bool IsCellAvailable(int row, int col)
+        public bool IsCellAvailable(int x, int y)
         {
-            if(this.gameField[row, col] == EmptyWhiteCell)
+            if(this[x, y] == EmptyWhiteCell)
             {
                 return true;
             }
+
             return false;
         }
 
@@ -75,11 +76,11 @@ using System;
                     // Check if both row and col numbers are even/odd at the same time.
                     if ((row % 2) == (col % 2))
                     {
-                        gameField[row, col] = EmptyWhiteCell;
+                        this[row, col] = EmptyWhiteCell;
                     }
                     else
                     {
-                        gameField[row, col] = EmptyBlackCell;
+                        this[row, col] = EmptyBlackCell;
                     }
                 }
             }
