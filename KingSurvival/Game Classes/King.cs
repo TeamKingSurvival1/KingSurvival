@@ -27,9 +27,7 @@
 
         public override void Move(Direction moveDirection)
         {
-            this.Position.X += moveDirection.XUpdateValue;
-            this.Position.Y += moveDirection.YUpdateValue;
-
+            base.Move(moveDirection);
             this.MovesMade += 1;
         }
     }
