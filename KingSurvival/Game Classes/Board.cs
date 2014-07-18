@@ -57,6 +57,15 @@ using System;
             this.gameField[row, col] = EmptyWhiteCell;
         }
 
+        public bool IsCellAvailable(int row, int col)
+        {
+            if(this.gameField[row, col] == EmptyWhiteCell)
+            {
+                return true;
+            }
+            return false;
+        }
+
         private void InitializeEmptyBoardCells()
         {
             for (int row = 0; row < BoardSize; row++)
