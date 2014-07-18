@@ -47,6 +47,7 @@
         private void TranslateInput(string input)
         {
             // TODO: Remove empty spaces
+            // TODO: check input not to be less than 3 chars
             string inputUppercase = input.ToUpper();
 
             this.TargetSymbol = inputUppercase[0];

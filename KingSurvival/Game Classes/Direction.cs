@@ -12,6 +12,24 @@
             this.CalculateUpdateValues(verticalDirectionLetter, horizontalDirectionLetter);
         }
 
+        public override int GetHashCode()
+        {
+            return this.XUpdateValue.GetHashCode() ^ this.YUpdateValue.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            Direction compareDirection = obj as Direction;
+
+            if ((object)compareDirection == null)
+            {
+                return false;
+            }
+
+            return Equals(this.XUpdateValue, compareDirection.XUpdateValue) &&
+                   Equals(this.YUpdateValue, compareDirection.YUpdateValue);
+        }
+
         internal int XUpdateValue
         {
             get
@@ -35,7 +53,7 @@
                 this.yUpdateValue = value;
             }
         }
-
+        
         internal void CalculateUpdateValues(char verticalDirectionLetter, char horizontalDirectionLetter)
         {
             // TODO: Extract constants
