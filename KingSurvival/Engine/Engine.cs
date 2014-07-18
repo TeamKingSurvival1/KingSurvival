@@ -44,6 +44,8 @@
                     string playerInput = Console.ReadLine();
                     Command currentCommand = Command.Parse(playerInput);
 
+                    //?? get currentPiece here, instead of getting it twice - inProcessCommand and IsCommandValid methods
+                    
                     if (!IsCommandValid(currentCommand, isKingsTurn))
                     {
                         PrintInvalidMoveMessage();
@@ -84,7 +86,7 @@
 
         private bool IsGameOver(Board gameBoard, Piece[] pawns, King king)
         {            
-            if (HasKingReachedTop() || !PawnsHavePossibleDirection()||!KingHasPossibleDirection())
+            if (HasKingReachedTop() || !PawnsHavePossibleDirection() || !KingHasPossibleDirection())
             {
                 return true;
             }           
@@ -169,7 +171,37 @@
                 return false;
             }
 
+            if (!IsCommandDirectionValid(currentCommand, isKingsTurn))
+            {
+                return false;
+            }
+
             return true;
+        }
+
+        private bool IsCommandDirectionValid(Command command, bool isKingsTurn)
+        {
+            if(isKingsTurn)
+            {
+                for (int i = 0; i < validKingDirections.Length; i++)
+                {
+                    if (command.MoveDirection.Equals(validKingDirections[i]))
+                    {
+                        return true;
+                    }
+                }
+            }
+            else 
+            {
+                for (int i = 0; i < validPawnDirections.Length; i++)
+                {
+                    if (command.MoveDirection.Equals(validPawnDirections[i]))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         private bool IsCommandPieceSymbolValid(char symbol, bool isKingsTurn)
