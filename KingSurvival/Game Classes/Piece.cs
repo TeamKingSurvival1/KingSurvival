@@ -2,11 +2,40 @@
 {
     internal abstract class Piece: IMoveable
     {
-        internal abstract Position Position { get; }
+        private Position position;
+        private char symbol;
 
-        internal abstract char Symbol { get; }
+        protected Piece(char symbol, int initialX, int initialY)
+        {
+            this.Symbol = symbol;
+            this.Position = new Position(initialX, initialY);
+        }
 
-        public void Move(Direction moveDirection)
+        public Position Position
+        {
+            get
+            {
+                return this.position;
+            }
+            set
+            {
+                this.position = value;
+            }
+        }
+
+        public char Symbol
+        {
+            get
+            {
+                return this.symbol;
+            }
+            set
+            {
+                this.symbol = value;
+            }
+        }
+
+        public virtual void Move(Direction moveDirection)
         {
             this.Position.X += moveDirection.XUpdateValue;
             this.Position.Y += moveDirection.YUpdateValue;

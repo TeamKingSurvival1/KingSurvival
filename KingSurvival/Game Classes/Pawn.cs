@@ -4,32 +4,14 @@
 
     internal class Pawn : Piece
     {
-        private const char InvalidPawnSymbol = 'K';        
-        private Position position;
-        private char pieceSymbol;
+        private const char InvalidPawnSymbol = 'K';
 
         public Pawn(char symbol, int initialX, int initialY)
+            : base(symbol, initialX, initialY)
         {
-            position = new Position(initialX, initialY);
             if (symbol == InvalidPawnSymbol)
             {
-                throw new ArgumentException("Invalid pawn symbol!"); 
-            }
-            this.pieceSymbol = symbol;
-        }
-
-        internal override char Symbol
-        {
-            get
-            {
-                return this.pieceSymbol;
-            }
-        }
-        internal override Position Position
-        {
-            get
-            {
-                return this.position;
+                throw new ArgumentException("Invalid pawn symbol!");
             }
         }
     }

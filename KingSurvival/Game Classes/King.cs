@@ -4,29 +4,33 @@
     internal class King : Piece
     {
         private const char KingsSymbol = 'K';
-        private Position position;
-        private char pieceSymbol;
+        private int movesMade;
 
         public King(int initialX, int initialY)
+            : base(KingsSymbol, initialX, initialY)
         {
-            position = new Position(initialX, initialY);
-            this.pieceSymbol = KingsSymbol;
+            this.MovesMade = 0;
         }
-        
-        internal override char Symbol
+
+
+        public int MovesMade
         {
             get
             {
-                return this.pieceSymbol;
+                return this.movesMade;
+            }
+            private set
+            {
+                this.movesMade = value;
             }
         }
 
-        internal override Position Position
+        public override void Move(Direction moveDirection)
         {
-            get
-            {
-                return this.position;
-            }
+            this.Position.X += moveDirection.XUpdateValue;
+            this.Position.Y += moveDirection.YUpdateValue;
+
+            this.MovesMade += 1;
         }
     }
 }
