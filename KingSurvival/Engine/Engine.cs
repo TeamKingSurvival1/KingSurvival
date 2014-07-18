@@ -10,6 +10,9 @@
         private IRenderer renderer;
         private const string KingsTurnMessage = "King's Turn: ";
         private const string PawnsTurnMessage = "Pawn's Turn: ";
+        private readonly Direction[] validKingDirections = { new Direction('U', 'L'), new Direction('U', 'R'),
+                                                             new Direction('D', 'L'), new Direction('D', 'R')};
+        private readonly Direction[] validPawnDirections = { new Direction('D', 'L'), new Direction('D', 'R')};
 
         public Engine()
         {
@@ -24,6 +27,7 @@
             bool isKingsTurn = true;
             bool gameOver = false;
             bool hasTurnEnded;
+            bool kingWins = false;
 
             PlacePiecesOnBoard(this.board, this.pawns, this.king);
 
@@ -50,11 +54,82 @@
 
                     isKingsTurn = !isKingsTurn;
                     hasTurnEnded = true;
-                    //gameOver = IsGameOver();
+                    gameOver = IsGameOver(this.board, this.pawns, this.king);
+                    if (gameOver)
+                    {
+                        if (HasKingReachedTop() || !PawnsHavePossibleDirection())
+                        {
+                            kingWins = true;
+                        }
+                    }
+
+                    this.renderer.Render(board.GameField);
+
+                    if (gameOver)
+                    {
+                        if (kingWins)
+                        {
+                            Console.WriteLine("King wins in {0} turns.", king.MovesMade);
+                        }
+                        else 
+                        { 
+                            Console.WriteLine("King loses.");
+                        }
+                    }
                 }
             }
 
             //PrintWinMessage();
+        }
+
+        private bool IsGameOver(Board gameBoard, Piece[] pawns, King king)
+        {            
+            if (HasKingReachedTop() || !PawnsHavePossibleDirection()||!KingHasPossibleDirection())
+            {
+                return true;
+            }           
+
+            return false;
+        }
+
+        private bool HasKingReachedTop()
+        {
+            if (king.Position.Y == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool PawnsHavePossibleDirection()
+        {
+            for (int i = 0; i < validPawnDirections.Length; i++)
+            {
+                Direction checkDirection = validPawnDirections[i];
+
+                for (int j = 0; j < this.pawns.Length; j++)
+                {
+                    Piece checkPawn = pawns[j];
+
+                    if (IsMoveValid(checkPawn,checkDirection))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private bool KingHasPossibleDirection()
+        {
+            for (int i = 0; i < validKingDirections.Length; i++)
+            {
+                if (IsMoveValid(king, validKingDirections[i]))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void PlacePiecesOnBoard(Board gameBoard, Piece[] pawns, King king)
@@ -79,7 +154,6 @@
                 Console.Write(PawnsTurnMessage);
             }
         }
-
 
         private bool IsCommandValid(Command currentCommand, bool isKingsTurn)
         {
@@ -175,7 +249,6 @@
 
             return true;
         }
-
 
         private void ProcessCommand(Command currentCommand, bool isKingsTurn)
         {
