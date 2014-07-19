@@ -1,8 +1,10 @@
-﻿namespace KingSurvival
+﻿namespace KingSurvival.Engine
 {
     using System;
+    using Interfaces;
+    using GameplayClasses;
 
-    public class Engine
+    public class KingSurvivalEngine
     {
         private Board board;
         private King king;
@@ -14,7 +16,7 @@
                                                              new Direction('D', 'L'), new Direction('D', 'R')};
         private readonly Direction[] validPawnDirections = { new Direction('D', 'L'), new Direction('D', 'R')};
 
-        public Engine()
+        public KingSurvivalEngine()
         {
             this.board = new Board();
             this.king = new King(3, 7);

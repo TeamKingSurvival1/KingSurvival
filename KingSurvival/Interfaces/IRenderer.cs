@@ -1,7 +1,5 @@
-﻿namespace KingSurvival
+﻿namespace KingSurvival.Interfaces
 {
-    using System;
-
     public interface IRenderer
     {
         void Render(char[,] matrix);

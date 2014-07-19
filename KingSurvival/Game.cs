@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace KingSurvival
+﻿namespace KingSurvival
 {
-    class Game
+    using Engine;
+
+    public class Game
     {
-        static void Main()
+        public static void Main()
         {
-            var engine = new Engine();
+            var engine = new KingSurvivalEngine();
             engine.Run();
         }
     }

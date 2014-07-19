@@ -1,7 +1,8 @@
-﻿namespace KingSurvival
+﻿namespace KingSurvival.Engine
 {
     using System;
     using System.Collections.Generic;
+    using GameplayClasses;
 
     internal class Command
     {

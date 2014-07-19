@@ -1,7 +1,8 @@
-﻿namespace KingSurvival
+﻿namespace KingSurvival.Engine
 {
     using System;
     using System.Text;
+    using Interfaces;
 
     public class ConsoleRenderer : IRenderer
     {

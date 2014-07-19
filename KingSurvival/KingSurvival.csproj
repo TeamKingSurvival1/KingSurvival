@@ -42,17 +42,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Engine\Command.cs" />
-    <Compile Include="Game Classes\Board.cs" />
-    <Compile Include="Game Classes\Direction.cs" />
+    <Compile Include="GameplayClasses\Board.cs" />
+    <Compile Include="GameplayClasses\Direction.cs" />
     <Compile Include="Interfaces\IMoveable.cs" />
-    <Compile Include="Game Classes\King.cs" />
+    <Compile Include="GameplayClasses\King.cs" />
     <Compile Include="Engine\ConsoleRenderer.cs" />
-    <Compile Include="Engine\Engine.cs" />
+    <Compile Include="Engine\KingSurvivalEngine.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Interfaces\IRenderer.cs" />
-    <Compile Include="Game Classes\Pawn.cs" />
-    <Compile Include="Game Classes\Piece.cs" />
-    <Compile Include="Game Classes\Position.cs" />
+    <Compile Include="GameplayClasses\Pawn.cs" />
+    <Compile Include="GameplayClasses\Piece.cs" />
+    <Compile Include="GameplayClasses\Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

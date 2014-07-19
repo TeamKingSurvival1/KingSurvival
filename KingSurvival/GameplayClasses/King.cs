@@ -1,4 +1,4 @@
-﻿namespace KingSurvival
+﻿namespace KingSurvival.GameplayClasses
 {
     using System;
     internal class King : Piece

@@ -1,5 +1,7 @@
-﻿namespace KingSurvival
+﻿namespace KingSurvival.GameplayClasses
 {
+    using Interfaces;
+
     internal abstract class Piece: IMoveable
     {
         private Position position;
