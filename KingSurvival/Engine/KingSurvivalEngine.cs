@@ -9,7 +9,6 @@
         private Board board;
         private King king;
         private Piece[] pawns;
-        private IRenderer renderer;
         private const string KingsTurnMessage = "King's Turn: ";
         private const string PawnsTurnMessage = "Pawn's Turn: ";
         private readonly IDirection[] validKingDirections = { new Direction('U', 'L'), new Direction('U', 'R'),
@@ -21,7 +20,6 @@
             this.board = new Board();
             this.king = new King(3, 7);
             this.pawns = new Piece[] { new Pawn('A', 0, 0), new Pawn('B', 2, 0), new Pawn('C', 4, 0), new Pawn('D', 6, 0) };
-            this.renderer = new ConsoleRenderer();
         }
 
         public void Run()
@@ -40,7 +38,7 @@
 
                 while (!hasTurnEnded)
                 {
-                    this.renderer.Render(board.GameField);
+                    ConsoleRenderer.Render(board.GameField);
                     PrintTurnMessage(isKingsTurn);
 
                     string playerInput = Console.ReadLine();
@@ -67,7 +65,7 @@
                         }
                     }
 
-                    this.renderer.Render(board.GameField);
+                    ConsoleRenderer.Render(board.GameField);
 
                     if (gameOver)
                     {
@@ -151,11 +149,11 @@
         {
             if (isKingsTurn)
             {
-                Console.Write(KingsTurnMessage);
+                ConsoleRenderer.PrintMessage(KingsTurnMessage);
             }
             else
             {
-                Console.Write(PawnsTurnMessage);
+                ConsoleRenderer.PrintMessage(PawnsTurnMessage);
             }
         }
 

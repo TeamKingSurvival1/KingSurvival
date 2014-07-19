@@ -51,7 +51,6 @@
     <Compile Include="Engine\KingSurvivalEngine.cs" />
     <Compile Include="StartGame.cs" />
     <Compile Include="Interfaces\IPiece.cs" />
-    <Compile Include="Interfaces\IRenderer.cs" />
     <Compile Include="GameplayClasses\Pawn.cs" />
     <Compile Include="GameplayClasses\Piece.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -4,21 +4,12 @@
     using System.Text;
     using Interfaces;
 
-    public class ConsoleRenderer : IRenderer
+    internal static class ConsoleRenderer
     {
-        // Singleton
-        public ConsoleRenderer()
-        {
-        }
-
-        public void Render(char[,] matrix)
+        internal static void Render(char[,] matrix)
         {
             Console.Clear();
-            Console.Write(this.PrepareToRender(matrix));
-        }
 
-        private string PrepareToRender(char[,] matrix)
-        {
             StringBuilder result = new StringBuilder();
 
             for (int row = 0; row < matrix.GetLength(0); row++)
@@ -31,7 +22,12 @@
                 result.AppendLine();
             }
 
-            return result.ToString();
+            Console.Write(result.ToString());
+        }
+
+        internal static void PrintMessage(string message)
+        {
+            Console.Write(message);
         }
     }
 }
