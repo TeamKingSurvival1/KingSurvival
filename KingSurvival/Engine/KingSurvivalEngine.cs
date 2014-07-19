@@ -14,10 +14,6 @@
         private const string InvalidMoveMessage = "Invalid Move!";
         private const string PressAnyKeyToContinue = "** Press a key to continue **";
 
-        private readonly IDirection[] validKingDirections = { new Direction('U', 'L'), new Direction('U', 'R'),
-                                                             new Direction('D', 'L'), new Direction('D', 'R')};
-        private readonly IDirection[] validPawnDirections = { new Direction('D', 'L'), new Direction('D', 'R')};
-
         public KingSurvivalEngine()
         {
             this.board = new Board();
@@ -49,20 +45,22 @@
 
                     //?? get currentPiece here, instead of getting it twice - inProcessCommand and IsCommandValid methods
                     
-                    if (!IsCommandValid(currentCommand, isKingsTurn))
+                    if (!Validations.IsCommandValid(this.board, this.king, this.pawns, currentCommand, isKingsTurn))
                     {
                         InvalidMoveAction();
                         continue;
                     }
 
-                    ProcessCommand(currentCommand, isKingsTurn);
+                    ProcessCommand(currentCommand);
 
                     isKingsTurn = !isKingsTurn;
                     hasTurnEnded = true;
                     gameOver = IsGameOver(this.board, this.pawns, this.king);
+
                     if (gameOver)
                     {
-                        if (HasKingReachedTop() || !PawnsHavePossibleDirection())
+                        if (Validations.HasKingReachedTop(king) ||
+                            !Validations.PawnsHavePossibleDirection(this.board, this.pawns))
                         {
                             kingWins = true;
                         }
@@ -89,7 +87,7 @@
 
         private bool IsGameOver(Board gameBoard, Piece[] pawns, King king)
         {            
-            if (HasKingReachedTop() || !PawnsHavePossibleDirection() || !KingHasPossibleDirection())
+            if (Validations.HasKingReachedTop(this.king) || !Validations.PawnsHavePossibleDirection(this.board, this.pawns) || !Validations.HasKingPossibleDirection(this.board, this.king))
             {
                 return true;
             }           
@@ -97,45 +95,7 @@
             return false;
         }
 
-        private bool HasKingReachedTop()
-        {
-            if (king.Y == 0)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private bool PawnsHavePossibleDirection()
-        {
-            for (int i = 0; i < validPawnDirections.Length; i++)
-            {
-                IDirection checkDirection = validPawnDirections[i];
-
-                for (int j = 0; j < this.pawns.Length; j++)
-                {
-                    Piece checkPawn = pawns[j];
-
-                    if (IsMoveValid(checkPawn,checkDirection))
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-        private bool KingHasPossibleDirection()
-        {
-            for (int i = 0; i < validKingDirections.Length; i++)
-            {
-                if (IsMoveValid(king, validKingDirections[i]))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        
 
         private void PlacePiecesOnBoard(Board gameBoard, Piece[] pawns, King king)
         {
@@ -160,75 +120,7 @@
             }
         }
 
-        private bool IsCommandValid(ICommand currentCommand, bool isKingsTurn)
-        {
-            if (!IsCommandPieceSymbolValid(currentCommand.TargetSymbol, isKingsTurn))
-            {
-                return false;
-            }
-
-            Piece currentPiece = GetCurrentPiece(currentCommand.TargetSymbol);
-
-            if (!IsMoveValid(currentPiece, currentCommand.MoveDirection))
-            {
-                return false;
-            }
-
-            if (!IsCommandDirectionValid(currentCommand, isKingsTurn))
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        private bool IsCommandDirectionValid(ICommand command, bool isKingsTurn)
-        {
-            if(isKingsTurn)
-            {
-                for (int i = 0; i < validKingDirections.Length; i++)
-                {
-                    if (command.MoveDirection.Equals(validKingDirections[i]))
-                    {
-                        return true;
-                    }
-                }
-            }
-            else 
-            {
-                for (int i = 0; i < validPawnDirections.Length; i++)
-                {
-                    if (command.MoveDirection.Equals(validPawnDirections[i]))
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-        private bool IsCommandPieceSymbolValid(char symbol, bool isKingsTurn)
-        {
-            if (isKingsTurn)
-            {
-                if (symbol == this.king.Symbol)
-                {
-                    return true;
-                }
-            }
-            else
-            {
-                for (int i = 0; i < this.pawns.Length; i++)
-                {
-                    if (symbol == this.pawns[i].Symbol)
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        }
+        
 
         internal void InvalidMoveAction()
         {
@@ -237,21 +129,21 @@
             Console.ReadKey();
         }
 
-        private Piece GetCurrentPiece(char pieceSymbol)
+        internal static Piece GetCurrentPiece(Piece king, Piece[] pawns, char pieceSymbol)
         {
             Piece currentPiece = null;
 
-            if (pieceSymbol == this.king.Symbol)
+            if (pieceSymbol == king.Symbol)
             {
-                currentPiece = this.king;
+                currentPiece = king;
             }
             else
             {
-                for (int i = 0; i < this.pawns.Length; i++)
+                for (int i = 0; i < pawns.Length; i++)
                 {
-                    if (pieceSymbol == this.pawns[i].Symbol)
+                    if (pieceSymbol == pawns[i].Symbol)
                     {
-                        currentPiece = this.pawns[i];
+                        currentPiece = pawns[i];
                     }
                 }
             }
@@ -259,35 +151,9 @@
             return currentPiece;
         }
 
-        private bool IsMoveValid(IPiece currentPiece, IDirection currentDirection)
+        private void ProcessCommand(ICommand currentCommand)
         {
-            int newCellX = currentPiece.X + currentDirection.XUpdateValue;
-            int newCellY = currentPiece.Y + currentDirection.YUpdateValue;
-
-            if (!IsMoveInValidRange(newCellX, newCellY) || !this.board.IsCellAvailable(newCellX, newCellY))
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        private bool IsMoveInValidRange(int newCellX, int newCellY)
-        {
-            int fieldSize = Board.BoardSize - 1;
-
-            if (newCellX < 0 || newCellX > fieldSize ||
-                newCellY < 0 || newCellY > fieldSize)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        private void ProcessCommand(ICommand currentCommand, bool isKingsTurn)
-        {
-            Piece currentPiece = GetCurrentPiece(currentCommand.TargetSymbol);
+            Piece currentPiece = KingSurvivalEngine.GetCurrentPiece(this.king, this.pawns, currentCommand.TargetSymbol);
 
             this.board.ClearBoardCell(currentPiece.X, currentPiece.Y);
             currentPiece.Move(currentCommand.MoveDirection);
