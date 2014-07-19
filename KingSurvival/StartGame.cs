@@ -2,7 +2,7 @@
 {
     using Engine;
 
-    public class Game
+    public class StartGame
     {
         public static void Main()
         {
