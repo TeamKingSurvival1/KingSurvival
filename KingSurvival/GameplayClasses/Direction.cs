@@ -38,7 +38,7 @@
             {
                 return this.xUpdateValue;
             }
-            set
+            private set
             {
                 this.xUpdateValue = value;
             }
@@ -50,7 +50,7 @@
             {
                 return this.yUpdateValue;
             }
-            set
+            private set
             {
                 this.yUpdateValue = value;
             }

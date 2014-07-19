@@ -22,7 +22,7 @@
             {
                 return this.x;
             }
-            set
+            protected set
             {
                 if (value < 0)
                 {
@@ -38,7 +38,7 @@
             {
                 return this.y;
             }
-            set
+            protected set
             {
                 if (value < 0)
                 {
@@ -54,7 +54,7 @@
             {
                 return this.symbol;
             }
-            set
+            protected set
             {
                 if (Char.IsWhiteSpace(value))
                 {

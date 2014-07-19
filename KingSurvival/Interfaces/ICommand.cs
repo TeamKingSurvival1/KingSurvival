@@ -5,6 +5,5 @@
         char TargetSymbol { get; }
 
         IDirection MoveDirection { get; }
-
     }
 }

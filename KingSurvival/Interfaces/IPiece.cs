@@ -2,9 +2,9 @@
 {
     public interface IPiece
     {
-        int X { get; set; }
+        int X { get; }
 
-        int Y { get; set; }
+        int Y { get; }
 
         void Move(IDirection moveDirection);
     }

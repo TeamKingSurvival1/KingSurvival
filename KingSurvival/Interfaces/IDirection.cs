@@ -2,8 +2,8 @@
 {
     public interface IDirection
     {
-        int XUpdateValue { get; set; }
+        int XUpdateValue { get; }
 
-        int YUpdateValue { get; set; }
+        int YUpdateValue { get; }
     }
 }
