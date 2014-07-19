@@ -11,6 +11,9 @@
         private Piece[] pawns;
         private const string KingsTurnMessage = "King's Turn: ";
         private const string PawnsTurnMessage = "Pawn's Turn: ";
+        private const string InvalidMoveMessage = "Invalid Move!";
+        private const string PressAnyKeyToContinue = "** Press a key to continue **";
+
         private readonly IDirection[] validKingDirections = { new Direction('U', 'L'), new Direction('U', 'R'),
                                                              new Direction('D', 'L'), new Direction('D', 'R')};
         private readonly IDirection[] validPawnDirections = { new Direction('D', 'L'), new Direction('D', 'R')};
@@ -48,7 +51,7 @@
                     
                     if (!IsCommandValid(currentCommand, isKingsTurn))
                     {
-                        PrintInvalidMoveMessage();
+                        InvalidMoveAction();
                         continue;
                     }
 
@@ -227,10 +230,10 @@
             return false;
         }
 
-        internal void PrintInvalidMoveMessage()
+        internal void InvalidMoveAction()
         {
-            Console.WriteLine("Invalid Move!");
-            Console.WriteLine("**Press a key to continue**");
+            ConsoleRenderer.PrintMessage(InvalidMoveMessage + Environment.NewLine);
+            ConsoleRenderer.PrintMessage(PressAnyKeyToContinue + Environment.NewLine);
             Console.ReadKey();
         }
 
