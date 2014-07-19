@@ -1,36 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="KingSurvival.Engine.Command" Collapsed="true">
-    <Position X="2.75" Y="1.5" Width="1.5" />
+  <Class Name="KingSurvival.Engine.Command" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgBAAAAAAAEAAAAAAAAACAAAAAgAAEAAAAAAAAAAA=</HashCode>
       <FileName>Engine\Command.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="KingSurvival.Engine.ConsoleRenderer" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="0.5" Y="1.5" Width="1.5" />
+    <Position X="0.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
       <FileName>Engine\ConsoleRenderer.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="KingSurvival.Engine.KingSurvivalEngine" Collapsed="true">
-    <Position X="1.5" Y="0.5" Width="1.5" />
+    <Position X="1.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAAAAACBAAEEAAAIIAMAMYIAABAAAAAZAAQAACAgAI=</HashCode>
       <FileName>Engine\KingSurvivalEngine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KingSurvival.GameplayClasses.Board" Collapsed="true">
-    <Position X="0.5" Y="2.75" Width="1.5" />
+    <Position X="0.5" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAAAgAACAAAAQAAAAEBAACBAAAgAAAAAAA=</HashCode>
       <FileName>GameplayClasses\Board.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KingSurvival.GameplayClasses.Direction" Collapsed="true">
-    <Position X="2.75" Y="2.75" Width="1.5" />
+    <Position X="2.5" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAQAAAAAAAAgAAAAAAAAAAACIAAAAwAAAAECAA=</HashCode>
       <FileName>GameplayClasses\Direction.cs</FileName>
@@ -38,43 +39,50 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="KingSurvival.GameplayClasses.King" Collapsed="true">
-    <Position X="2.75" Y="5.5" Width="1.5" />
+    <Position X="2.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAAIAAAAAAAAAAAAAAIAAAAAAAAAAAAAgAAAA=</HashCode>
       <FileName>GameplayClasses\King.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KingSurvival.GameplayClasses.Pawn" Collapsed="true">
-    <Position X="0.5" Y="5.5" Width="1.5" />
+    <Position X="0.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameplayClasses\Pawn.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KingSurvival.GameplayClasses.Piece" Collapsed="true">
-    <Position X="1.75" Y="4.25" Width="1.5" />
+    <Position X="1.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAIAAAAAIAAAAAAAAAAAAAAAAAAAAAAAABgAAAAaAA=</HashCode>
       <FileName>GameplayClasses\Piece.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Interface Name="KingSurvival.Interfaces.ICommand" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\ICommand.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Interface Name="KingSurvival.Interfaces.IDirection" Collapsed="true">
-    <Position X="8" Y="0.5" Width="1.5" />
+    <Position X="5.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAQAAAAAAAA=</HashCode>
       <FileName>Interfaces\IDirection.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="KingSurvival.Interfaces.IPiece" Collapsed="true">
-    <Position X="6" Y="1.5" Width="1.5" />
+    <Position X="7.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
       <FileName>Interfaces\IPiece.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="KingSurvival.Interfaces.IRenderer" Collapsed="true">
-    <Position X="6" Y="0.5" Width="1.5" />
+    <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IRenderer.cs</FileName>

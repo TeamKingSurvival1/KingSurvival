@@ -2,19 +2,20 @@
 {
     using System;
     using System.Collections.Generic;
+    using Interfaces;
     using GameplayClasses;
 
-    internal class Command
+    public class Command : ICommand
     {
         private char targetSymbol;
-        private Direction moveDirection;
+        private IDirection moveDirection;
 
         private Command(string input)
         {
             this.TranslateInput(input);
         }
 
-        internal char TargetSymbol
+        public char TargetSymbol
         {
             get
             {
@@ -27,7 +28,7 @@
             }
         }
 
-        internal Direction MoveDirection
+        public IDirection MoveDirection
         {
             get
             {
@@ -40,7 +41,7 @@
             }
         }
 
-        internal static Command Parse(string input)
+        public static Command Parse(string input)
         {
             return new Command(input);
         }

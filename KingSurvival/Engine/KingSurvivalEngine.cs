@@ -12,9 +12,9 @@
         private IRenderer renderer;
         private const string KingsTurnMessage = "King's Turn: ";
         private const string PawnsTurnMessage = "Pawn's Turn: ";
-        private readonly Direction[] validKingDirections = { new Direction('U', 'L'), new Direction('U', 'R'),
+        private readonly IDirection[] validKingDirections = { new Direction('U', 'L'), new Direction('U', 'R'),
                                                              new Direction('D', 'L'), new Direction('D', 'R')};
-        private readonly Direction[] validPawnDirections = { new Direction('D', 'L'), new Direction('D', 'R')};
+        private readonly IDirection[] validPawnDirections = { new Direction('D', 'L'), new Direction('D', 'R')};
 
         public KingSurvivalEngine()
         {
@@ -109,7 +109,7 @@
         {
             for (int i = 0; i < validPawnDirections.Length; i++)
             {
-                Direction checkDirection = validPawnDirections[i];
+                IDirection checkDirection = validPawnDirections[i];
 
                 for (int j = 0; j < this.pawns.Length; j++)
                 {
@@ -159,7 +159,7 @@
             }
         }
 
-        private bool IsCommandValid(Command currentCommand, bool isKingsTurn)
+        private bool IsCommandValid(ICommand currentCommand, bool isKingsTurn)
         {
             if (!IsCommandPieceSymbolValid(currentCommand.TargetSymbol, isKingsTurn))
             {
@@ -181,7 +181,7 @@
             return true;
         }
 
-        private bool IsCommandDirectionValid(Command command, bool isKingsTurn)
+        private bool IsCommandDirectionValid(ICommand command, bool isKingsTurn)
         {
             if(isKingsTurn)
             {
@@ -258,7 +258,7 @@
             return currentPiece;
         }
 
-        private bool IsMoveValid(Piece currentPiece, Direction currentDirection)
+        private bool IsMoveValid(IPiece currentPiece, IDirection currentDirection)
         {
             int newCellX = currentPiece.X + currentDirection.XUpdateValue;
             int newCellY = currentPiece.Y + currentDirection.YUpdateValue;
@@ -284,7 +284,7 @@
             return true;
         }
 
-        private void ProcessCommand(Command currentCommand, bool isKingsTurn)
+        private void ProcessCommand(ICommand currentCommand, bool isKingsTurn)
         {
             Piece currentPiece = GetCurrentPiece(currentCommand.TargetSymbol);
 
