@@ -98,7 +98,7 @@
 
         private bool HasKingReachedTop()
         {
-            if (king.Position.Y == 0)
+            if (king.Y == 0)
             {
                 return true;
             }
@@ -141,10 +141,10 @@
             for (int i = 0; i < pawns.Length; i++)
             {
                 Piece currentPawn = pawns[i];
-                this.board.PlacePieceOnBoard(currentPawn.Position.X, currentPawn.Position.Y, currentPawn.Symbol);
+                this.board.PlacePieceOnBoard(currentPawn.X, currentPawn.Y, currentPawn.Symbol);
             }
 
-            this.board.PlacePieceOnBoard(king.Position.X, king.Position.Y, king.Symbol);
+            this.board.PlacePieceOnBoard(king.X, king.Y, king.Symbol);
         }
 
         private void PrintTurnMessage(bool isKingsTurn)
@@ -260,8 +260,8 @@
 
         private bool IsMoveValid(Piece currentPiece, Direction currentDirection)
         {
-            int newCellX = currentPiece.Position.X + currentDirection.XUpdateValue;
-            int newCellY = currentPiece.Position.Y + currentDirection.YUpdateValue;
+            int newCellX = currentPiece.X + currentDirection.XUpdateValue;
+            int newCellY = currentPiece.Y + currentDirection.YUpdateValue;
 
             if (!IsMoveInValidRange(newCellX, newCellY) || !this.board.IsCellAvailable(newCellX, newCellY))
             {
@@ -288,9 +288,9 @@
         {
             Piece currentPiece = GetCurrentPiece(currentCommand.TargetSymbol);
 
-            this.board.ClearBoardCell(currentPiece.Position.X, currentPiece.Position.Y);
+            this.board.ClearBoardCell(currentPiece.X, currentPiece.Y);
             currentPiece.Move(currentCommand.MoveDirection);
-            this.board.PlacePieceOnBoard(currentPiece.Position.X, currentPiece.Position.Y, currentPiece.Symbol);
+            this.board.PlacePieceOnBoard(currentPiece.X, currentPiece.Y, currentPiece.Symbol);
         }
     }
 }

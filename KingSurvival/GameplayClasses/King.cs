@@ -1,6 +1,8 @@
 ﻿namespace KingSurvival.GameplayClasses
 {
     using System;
+    using Interfaces;
+
     internal class King : Piece
     {
         private const char KingsSymbol = 'K';
@@ -25,7 +27,7 @@
             }
         }
 
-        public override void Move(Direction moveDirection)
+        public override void Move(IDirection moveDirection)
         {
             base.Move(moveDirection);
             this.MovesMade += 1;

@@ -1,27 +1,50 @@
 ﻿namespace KingSurvival.GameplayClasses
 {
+    using System;
     using Interfaces;
 
-    internal abstract class Piece: IMoveable
+    internal abstract class Piece: IPiece
     {
-        private Position position;
+        private int x;
+        private int y;
         private char symbol;
 
         protected Piece(char symbol, int initialX, int initialY)
         {
             this.Symbol = symbol;
-            this.Position = new Position(initialX, initialY);
+            this.X = initialX;
+            this.Y = initialY;
         }
 
-        public Position Position
+        public int X
         {
             get
             {
-                return this.position;
+                return this.x;
             }
             set
             {
-                this.position = value;
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("Piece coordinates cannot be negative");
+                }
+                this.x = value;
+            }
+        }
+
+        public int Y
+        {
+            get
+            {
+                return this.y;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("Piece coordinates cannot be negative");
+                }
+                this.y = value;
             }
         }
 
@@ -33,14 +56,18 @@
             }
             set
             {
+                if (Char.IsWhiteSpace(value))
+                {
+                    throw new ArgumentException("Piece symbol cannot be white space");
+                }
                 this.symbol = value;
             }
         }
 
-        public virtual void Move(Direction moveDirection)
+        public virtual void Move(IDirection moveDirection)
         {
-            this.Position.X += moveDirection.XUpdateValue;
-            this.Position.Y += moveDirection.YUpdateValue;
+            this.X += moveDirection.XUpdateValue;
+            this.Y += moveDirection.YUpdateValue;
         }
     }
 }
