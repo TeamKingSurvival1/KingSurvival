@@ -1,13 +1,15 @@
 ﻿namespace KingSurvival.GameplayClasses
 {
-    public class Direction
+    using Interfaces;
+
+    public class Direction : IDirection
     {
         private const int MoveDistance = 1;
 
         private int xUpdateValue;
         private int yUpdateValue;
 
-        internal Direction(char verticalDirectionLetter, char horizontalDirectionLetter)
+        public Direction(char verticalDirectionLetter, char horizontalDirectionLetter)
         {
             this.CalculateUpdateValues(verticalDirectionLetter, horizontalDirectionLetter);
         }
@@ -30,7 +32,7 @@
                    Equals(this.YUpdateValue, compareDirection.YUpdateValue);
         }
 
-        internal int XUpdateValue
+        public int XUpdateValue
         {
             get
             {
@@ -42,7 +44,7 @@
             }
         }
 
-        internal int YUpdateValue
+        public int YUpdateValue
         {
             get
             {
@@ -54,7 +56,7 @@
             }
         }
         
-        internal void CalculateUpdateValues(char verticalDirectionLetter, char horizontalDirectionLetter)
+        private void CalculateUpdateValues(char verticalDirectionLetter, char horizontalDirectionLetter)
         {
             // TODO: Extract constants
             if (verticalDirectionLetter == 'U')
@@ -63,7 +65,7 @@
             }
             else if (verticalDirectionLetter == 'D')
             {
-                this.YUpdateValue = +MoveDistance;
+                this.YUpdateValue = MoveDistance;
             }
 
             if (horizontalDirectionLetter == 'R')
