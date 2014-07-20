@@ -3,7 +3,7 @@
     using System;
     using Interfaces;
 
-    internal class King : Piece
+    public class King : Piece
     {
         private const char KingsSymbol = 'K';
         private int movesMade;

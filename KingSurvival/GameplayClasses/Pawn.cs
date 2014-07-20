@@ -2,7 +2,7 @@
 {
     using System;
 
-    internal class Pawn : Piece
+    public class Pawn : Piece
     {
         private const char InvalidPawnSymbol = 'K';
 

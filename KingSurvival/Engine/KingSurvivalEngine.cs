@@ -7,6 +7,7 @@
     public class KingSurvivalEngine
     {
         private Board board;
+        private PieceFactory pieceFactory;
         private King king;
         private Piece[] pawns;
         private const string KingsTurnMessage = "King's Turn: ";
@@ -17,8 +18,9 @@
         public KingSurvivalEngine()
         {
             this.board = new Board();
-            this.king = new King(3, 7);
-            this.pawns = new Piece[] { new Pawn('A', 0, 0), new Pawn('B', 2, 0), new Pawn('C', 4, 0), new Pawn('D', 6, 0) };
+            this.pieceFactory = new PieceFactory();
+            this.king = pieceFactory.CreateKing();
+            this.pawns = pieceFactory.CreatePawns();
         }
 
         public void Run()

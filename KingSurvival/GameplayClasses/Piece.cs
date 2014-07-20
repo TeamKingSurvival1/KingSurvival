@@ -3,7 +3,7 @@
     using System;
     using Interfaces;
 
-    internal abstract class Piece: IPiece
+    public abstract class Piece: IPiece
     {
         private int x;
         private int y;
