@@ -50,7 +50,7 @@ namespace KingSurvival.GameplayClasses
         ///     Initializes the instance at co-ordinate "y" as <see cref="Int32" /> type.
         /// </param>
         /// <remarks>
-        ///     Inherits the base class constructor of <see cref="Piece" />.
+        ///     Inherits the base class constructor of the <see cref="Piece" /> type.
         /// </remarks>
         public King(int initialX, int initialY)
             : base(KingsSymbol, initialX, initialY)
@@ -59,9 +59,9 @@ namespace KingSurvival.GameplayClasses
         }
 
         /// <summary>
-        ///     Gets the count of the executed moves.
+        ///     Gets and sets the count of the executed moves.
         /// </summary>
-        /// <value>The value is held in <see cref="Int32" /></value>
+        /// <value>The value is held in the <see cref="Int32" /> type.</value>
         /// <remarks>
         ///     Iterates with the <c>movesCount</c> field.
         /// </remarks>
@@ -82,7 +82,7 @@ namespace KingSurvival.GameplayClasses
         ///     The methods provides functionality for moving the <c>King</c> on the game field and counting its moves.
         /// </summary>
         /// <param name="moveDirection">
-        ///     Takes as parameter a direction to move on.
+        ///     Takes as <see cref="IDirection" /> parameter a direction to move on.
         /// </param>
         public override void Move(IDirection moveDirection)
         {
