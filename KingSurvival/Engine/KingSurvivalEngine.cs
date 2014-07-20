@@ -76,7 +76,7 @@
                     {
                         if (kingWins)
                         {
-                            Console.WriteLine("King wins in {0} turns.", king.MovesMade);
+                            Console.WriteLine("King wins in {0} turns.", king.MovesCount);
                         }
                         else 
                         { 
