@@ -4,8 +4,20 @@
     using System.Text;
     using Interfaces;
 
-    internal class ConsoleRenderer : IRenderer
+    public sealed class ConsoleRenderer : IRenderer
     {
+        private static readonly ConsoleRenderer instance = new ConsoleRenderer();
+
+        private ConsoleRenderer() {}
+
+        public static ConsoleRenderer Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
         public void Render(char[,] matrix)
         {
             Console.Clear();
@@ -25,7 +37,7 @@
             Console.Write(result.ToString());
         }
 
-        internal static void PrintMessage(string message)
+        public static void PrintMessage(string message)
         {
             Console.Write(message);
         }
