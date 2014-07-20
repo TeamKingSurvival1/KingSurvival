@@ -2,9 +2,9 @@
 {
     using Engine;
 
-    public class StartGame
+    internal sealed class StartGame
     {
-        public static void Main()
+        private static void Main()
         {
             var engine = new KingSurvivalEngine();
             engine.Run();

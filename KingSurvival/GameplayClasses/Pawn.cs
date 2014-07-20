@@ -27,7 +27,7 @@ namespace KingSurvival.GameplayClasses
     public class Pawn : Piece
     {
         /// <summary>
-        ///     Holds a <see cref="Char" /> for its initialization on the game board.
+        ///     Holds a <see cref="Char" /> value for its initialization on the game board.
         /// </summary>
         private const char InvalidPawnSymbol = 'K';
 

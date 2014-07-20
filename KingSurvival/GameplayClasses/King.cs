@@ -31,7 +31,7 @@ namespace KingSurvival.GameplayClasses
     public class King : Piece
     {
         /// <summary>
-        ///     Holds a <see cref="Char" /> for its initialization on the game board.
+        ///     Holds a <see cref="Char" /> value for its initialization on the game board.
         /// </summary>
         private const char KingsSymbol = 'K';
 
@@ -59,9 +59,9 @@ namespace KingSurvival.GameplayClasses
         }
 
         /// <summary>
-        ///     Gets and sets the count of the executed moves.
+        ///     Gets or sets the count of the executed moves.
         /// </summary>
-        /// <value>The value is held in the <see cref="Int32" /> type.</value>
+        /// <value>The value is held as <see cref="Int32" /> type.</value>
         /// <remarks>
         ///     Iterates with the <c>movesCount</c> field.
         /// </remarks>
@@ -82,12 +82,12 @@ namespace KingSurvival.GameplayClasses
         ///     The methods provides functionality for moving the <c>King</c> on the game field and counting its moves.
         /// </summary>
         /// <param name="moveDirection">
-        ///     Takes as <see cref="IDirection" /> parameter a direction to move on.
+        ///     Takes <see cref="IDirection" /> parameter for direction to move on.
         /// </param>
         public override void Move(IDirection moveDirection)
         {
             base.Move(moveDirection);
-            this.MovesCount += 1;
+            this.MovesCount++;
         }
     }
 }
