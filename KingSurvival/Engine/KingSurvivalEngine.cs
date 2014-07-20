@@ -22,7 +22,7 @@
             this.pieceFactory = new PieceFactory();
             this.king = pieceFactory.CreateKing();
             this.pawns = pieceFactory.CreatePawns();
-            this.renderer = new ConsoleRenderer();
+            this.renderer = ConsoleRenderer.Instance;
         }
 
         public void Run()
