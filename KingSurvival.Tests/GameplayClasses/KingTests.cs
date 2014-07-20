@@ -41,7 +41,7 @@
         public void TestingKingsUpMovement()
         {
             King testKing = new King(2, 5);
-            testKing.Move(new Direction('u', 'l'));
+            testKing.Move(new Direction('U', 'L'));
             Assert.AreEqual(4, testKing.Y);
         }
 
@@ -49,7 +49,7 @@
         public void TestingKingsDownMovement()
         {
             King testKing = new King(2, 5);
-            testKing.Move(new Direction('d', 'l'));
+            testKing.Move(new Direction('D', 'L'));
             Assert.AreEqual(6, testKing.Y);
         }
 
@@ -57,7 +57,7 @@
         public void TestingKingsLeftMovement()
         {
             King testKing = new King(2, 5);
-            testKing.Move(new Direction('u', 'l'));
+            testKing.Move(new Direction('U', 'L'));
             Assert.AreEqual(1, testKing.X);
         }
 
@@ -65,7 +65,7 @@
         public void TestingKingsRightMovement()
         {
             King testKing = new King(2, 5);
-            testKing.Move(new Direction('u', 'r'));
+            testKing.Move(new Direction('U', 'R'));
             Assert.AreEqual(3, testKing.X);
         }
     }
