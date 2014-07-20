@@ -29,38 +29,38 @@
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void TestingInitializationOfPawnWithInvalidSymbolK()
         {
-            Pawn examplePawn = new Pawn('K', -2, -5);
+            Pawn examplePawn = new Pawn('K', 2, 5);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void TestingInitializationOfPawnWithInvalidSymbolZ()
         {
-            Pawn examplePawn = new Pawn('Z', -2, -5);
+            Pawn examplePawn = new Pawn('Z', 2, 5);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void TestingInitializationOfPawnWithDefaultCharValue()
         {
-            Pawn examplePawn = new Pawn('\0', -2, -5);
+            Pawn examplePawn = new Pawn('\0', 2, 5);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void TestingInitializationOfPawnWithInvalidLowerCaseSymbolZ()
         {
-            Pawn examplePawn = new Pawn('z', -2, -5);
+            Pawn examplePawn = new Pawn('z', 2, 5);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void TestingInitializationOfPawnWithValidLetterAsSymbolButInLowerCase()
         {
-            Pawn examplePawn = new Pawn('b', -2, -5);
+            Pawn examplePawn = new Pawn('b', 2, 5);
         }
     }
 }
