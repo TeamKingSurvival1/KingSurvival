@@ -48,15 +48,16 @@
 
         private void TranslateInput(string input)
         {
-            // TODO: Remove empty spaces
             // TODO: check input not to be less than 3 chars
+            input = input.Trim();
+
             string inputUppercase = input.ToUpper();
 
             this.TargetSymbol = inputUppercase[0];
 
             char verticalDirectionLetter = inputUppercase[1];
             char horizontalDirectionLetter = inputUppercase[2];
-            
+
             this.MoveDirection = new Direction(verticalDirectionLetter, horizontalDirectionLetter);
         }
     }
