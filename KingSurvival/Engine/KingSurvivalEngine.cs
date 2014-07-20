@@ -10,6 +10,7 @@
         private PieceFactory pieceFactory;
         private King king;
         private Piece[] pawns;
+        private IRenderer renderer;
         private const string KingsTurnMessage = "King's Turn: ";
         private const string PawnsTurnMessage = "Pawn's Turn: ";
         private const string InvalidMoveMessage = "Invalid Move!";
@@ -21,6 +22,7 @@
             this.pieceFactory = new PieceFactory();
             this.king = pieceFactory.CreateKing();
             this.pawns = pieceFactory.CreatePawns();
+            this.renderer = new ConsoleRenderer();
         }
 
         public void Run()
@@ -39,7 +41,7 @@
 
                 while (!hasTurnEnded)
                 {
-                    ConsoleRenderer.Render(board.GameField);
+                    renderer.Render(board.GameField);
                     PrintTurnMessage(isKingsTurn);
 
                     string playerInput = Console.ReadLine();
@@ -68,7 +70,7 @@
                         }
                     }
 
-                    ConsoleRenderer.Render(board.GameField);
+                    renderer.Render(board.GameField);
 
                     if (gameOver)
                     {

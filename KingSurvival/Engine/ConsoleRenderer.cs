@@ -4,9 +4,9 @@
     using System.Text;
     using Interfaces;
 
-    internal static class ConsoleRenderer
+    internal class ConsoleRenderer : IRenderer
     {
-        internal static void Render(char[,] matrix)
+        public void Render(char[,] matrix)
         {
             Console.Clear();
 
