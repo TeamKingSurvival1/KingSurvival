@@ -68,16 +68,16 @@ namespace KingSurvival.GameplayClasses
         /// <summary>
         ///     Indexer to access the two-dimensional game field.
         /// </summary>
-        /// <param name="row">
-        ///     Takes <see cref="Int32"/> type value for accessing the first dimension of the game field.
-        /// </param>
         /// <param name="col">
         ///     Takes <see cref="Int32"/> type value for accessing the second dimension of the game field.
+        /// </param>
+        /// <param name="row">
+        ///     Takes <see cref="Int32"/> type value for accessing the first dimension of the game field.
         /// </param>
         /// <returns>
         ///     Returns a cell at given two-dimensional indexer.
         /// </returns>
-        public char this[int row, int col]
+        public char this[int col, int row]
         {
             get
             {
