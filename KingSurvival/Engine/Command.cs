@@ -1,9 +1,19 @@
-﻿namespace KingSurvival.Engine
+﻿//-----------------------------------------------------------------------
+// <summary>
+//     Class file for initializing the <c>Command</c> type.
+// </summary>
+// <copyright file="Command.cs" company="Telerik Academy - OOP 2014 Course">
+//     Copyright (c) Telerik Academy - OOP 2014 Course. All rights reserved.
+// </copyright>
+// <author>
+//     Not avaialbe. Refactored by Team King-Survival-1
+// </author>
+//-----------------------------------------------------------------------
+namespace KingSurvival.Engine
 {
     using System;
-    using System.Collections.Generic;
-    using Interfaces;
     using GameplayClasses;
+    using Interfaces;
 
     public class Command : ICommand
     {
@@ -34,6 +44,7 @@
             {
                 return this.moveDirection;
             }
+
             private set
             {
                 // TODO: Validation of move direction command (just the string)

@@ -1,4 +1,15 @@
-﻿namespace KingSurvival.Engine
+﻿//-----------------------------------------------------------------------
+// <summary>
+//     Class file for initializing the <c>Constants</c> type.
+// </summary>
+// <copyright file="Constants.cs" company="Telerik Academy - OOP 2014 Course">
+//     Copyright (c) Telerik Academy - OOP 2014 Course. All rights reserved.
+// </copyright>
+// <author>
+//     Not avaialbe. Refactored by Team King-Survival-1
+// </author>
+//-----------------------------------------------------------------------
+namespace KingSurvival.Engine
 {
     internal class Constants
     {

@@ -1,4 +1,15 @@
-﻿namespace KingSurvival.Engine
+﻿//-----------------------------------------------------------------------
+// <summary>
+//     Class file for initializing the <c>ConsoleRenderer</c> type.
+// </summary>
+// <copyright file="ConsoleRenderer.cs" company="Telerik Academy - OOP 2014 Course">
+//     Copyright (c) Telerik Academy - OOP 2014 Course. All rights reserved.
+// </copyright>
+// <author>
+//     Not avaialbe. Refactored by Team King-Survival-1
+// </author>
+//-----------------------------------------------------------------------
+namespace KingSurvival.Engine
 {
     using System;
     using System.Text;
@@ -6,16 +17,23 @@
 
     public sealed class ConsoleRenderer : IRenderer
     {
-        private static readonly ConsoleRenderer instance = new ConsoleRenderer();
+        private static readonly ConsoleRenderer InstanceField = new ConsoleRenderer();
 
-        private ConsoleRenderer() {}
+        private ConsoleRenderer()
+        {
+        }
 
         public static ConsoleRenderer Instance
         {
             get
             {
-                return instance;
+                return InstanceField;
             }
+        }
+
+        public static void PrintMessage(string message)
+        {
+            Console.Write(message);
         }
 
         public void Render(char[,] matrix)
@@ -35,11 +53,6 @@
             }
 
             Console.Write(result.ToString());
-        }
-
-        public static void PrintMessage(string message)
-        {
-            Console.Write(message);
         }
     }
 }
