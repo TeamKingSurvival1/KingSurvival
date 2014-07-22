@@ -41,9 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine\Formatters\BigSpacesFormatter.cs" />
     <Compile Include="Engine\Command.cs" />
     <Compile Include="Engine\Constants.cs" />
+    <Compile Include="Engine\Formatters\FancySpacesFormatter.cs" />
+    <Compile Include="Engine\Formatters\MediumSpacesFormatter.cs" />
     <Compile Include="Engine\PieceFactory.cs" />
+    <Compile Include="Engine\Formatters\SmallSpacesFormatter.cs" />
     <Compile Include="GameplayClasses\Board.cs" />
     <Compile Include="GameplayClasses\Direction.cs" />
     <Compile Include="GameplayClasses\Validations.cs" />
@@ -52,6 +56,7 @@
     <Compile Include="GameplayClasses\King.cs" />
     <Compile Include="Engine\ConsoleRenderer.cs" />
     <Compile Include="Engine\KingSurvivalEngine.cs" />
+    <Compile Include="Interfaces\IFormatter.cs" />
     <Compile Include="Interfaces\IPieceFactory.cs" />
     <Compile Include="Interfaces\IRenderer.cs" />
     <Compile Include="StartGame.cs" />

@@ -13,14 +13,19 @@ namespace KingSurvival.Engine
 {
     using System;
     using System.Text;
+
     using Interfaces;
+    using Formatters;
 
     public sealed class ConsoleRenderer : IRenderer
     {
         private static readonly ConsoleRenderer InstanceField = new ConsoleRenderer();
 
+        private IFormatter formatter;
+
         private ConsoleRenderer()
         {
+            this.Formatter = new MediumSpacesFormatter();
         }
 
         public static ConsoleRenderer Instance
@@ -28,6 +33,19 @@ namespace KingSurvival.Engine
             get
             {
                 return InstanceField;
+            }
+        }
+
+        public IFormatter Formatter
+        {
+            get
+            {
+                return this.formatter;
+            }
+
+            set
+            {
+                this.formatter = value;
             }
         }
 
@@ -46,7 +64,7 @@ namespace KingSurvival.Engine
             {
                 for (int col = 0; col < matrix.GetLength(1); col++)
                 {
-                    result.AppendFormat("{0,2}", matrix[row, col]);
+                    result.Append(this.formatter.Format(matrix[row, col]));
                 }
 
                 result.AppendLine();

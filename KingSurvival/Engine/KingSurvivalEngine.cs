@@ -12,6 +12,7 @@
 namespace KingSurvival.Engine
 {
     using System;
+
     using GameplayClasses;
     using Interfaces;
 
