@@ -1,8 +1,8 @@
 ﻿namespace KingSurvival.Tests.GameplayClasses
 {
     using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using KingSurvival.GameplayClasses;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class PawnTests
@@ -33,34 +33,6 @@
         public void TestingInitializationOfPawnWithInvalidSymbolK()
         {
             Pawn examplePawn = new Pawn('K', 2, 5);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void TestingInitializationOfPawnWithInvalidSymbolZ()
-        {
-            Pawn examplePawn = new Pawn('Z', 2, 5);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void TestingInitializationOfPawnWithDefaultCharValue()
-        {
-            Pawn examplePawn = new Pawn('\0', 2, 5);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void TestingInitializationOfPawnWithInvalidLowerCaseSymbolZ()
-        {
-            Pawn examplePawn = new Pawn('z', 2, 5);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void TestingInitializationOfPawnWithValidLetterAsSymbolButInLowerCase()
-        {
-            Pawn examplePawn = new Pawn('b', 2, 5);
         }
     }
 }
