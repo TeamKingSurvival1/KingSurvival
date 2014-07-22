@@ -11,7 +11,7 @@
 //-----------------------------------------------------------------------
 namespace KingSurvival.Engine
 {
-    internal class Constants
+    internal static class Constants
     {
         internal const int KingInitialX = 3;
         internal const int KingInitialY = 7;
