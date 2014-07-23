@@ -61,7 +61,9 @@ namespace KingSurvival.GameplayClasses
         /// <summary>
         ///     Gets the count of the executed moves.
         /// </summary>
-        /// <value>The value is held as <see cref="Int32" /> type.</value>
+        /// <value>
+        ///     The value is held as <see cref="Int32" /> type.
+        /// </value>
         /// <remarks>
         ///     Iterates with the <c>movesCount</c> field.
         /// </remarks>

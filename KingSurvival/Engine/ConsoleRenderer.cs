@@ -14,8 +14,8 @@ namespace KingSurvival.Engine
     using System;
     using System.Text;
 
-    using Interfaces;
     using Formatters;
+    using Interfaces;
 
     public sealed class ConsoleRenderer : IRenderer
     {
