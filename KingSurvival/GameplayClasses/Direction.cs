@@ -11,6 +11,7 @@
 //-----------------------------------------------------------------------
 namespace KingSurvival.GameplayClasses
 {
+    using System;
     using Interfaces;
 
     /// <summary>
@@ -145,6 +146,10 @@ namespace KingSurvival.GameplayClasses
             {
                 this.YUpdateValue = MoveDistance;
             }
+            else
+            {
+                throw new ArgumentOutOfRangeException("verticalDirectionLetter", "Invalid vertical direction");
+            }
 
             if (horizontalDirectionLetter == 'R')
             {
@@ -153,6 +158,11 @@ namespace KingSurvival.GameplayClasses
             else if (horizontalDirectionLetter == 'L')
             {
                 this.XUpdateValue = -MoveDistance;
+            }
+
+            else
+            {
+                throw new ArgumentOutOfRangeException("horizontalDirectionLetter", "Invalid horizontal direction");
             }
         }
     }
