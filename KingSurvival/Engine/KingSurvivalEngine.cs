@@ -123,8 +123,6 @@ namespace KingSurvival.Engine
                     }
                 }
             }
-
-            // TODO: PrintWinMessage();
         }
 
         internal static Piece GetCurrentPiece(Piece king, Piece[] pawns, char pieceSymbol)

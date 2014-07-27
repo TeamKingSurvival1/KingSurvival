@@ -52,7 +52,6 @@ namespace KingSurvival.Engine
 
             private set
             {
-                // TODO: Validation of move direction command (just the string)
                 this.moveDirection = value;
             }
         }

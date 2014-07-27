@@ -137,10 +137,9 @@ namespace KingSurvival.GameplayClasses
         /// </param>
         private void CalculateUpdateValues(char verticalDirectionLetter, char horizontalDirectionLetter)
         {
-            // TODO: Extract constants
             if (verticalDirectionLetter == 'U')
             {
-                this.YUpdateValue = -MoveDistance; // TODO: not easy readable -MoveDistance, I guess
+                this.YUpdateValue = -MoveDistance;
             }
             else if (verticalDirectionLetter == 'D')
             {

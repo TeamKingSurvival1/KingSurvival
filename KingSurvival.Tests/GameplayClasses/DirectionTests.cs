@@ -27,7 +27,5 @@
         {
             var direction = new Direction('L', 'D');
         }
-
-        // TODO: to add tests for GetHashCode() and Equals()
     }
 }
