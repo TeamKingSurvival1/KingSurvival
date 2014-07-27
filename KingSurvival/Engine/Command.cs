@@ -22,7 +22,7 @@ namespace KingSurvival.Engine
 
         private Command(string input)
         {
-            this.TranslateInput(input);
+            this.TranslateInput(new NormalTranslate(), input);
         }
 
         public char TargetSymbol
@@ -57,17 +57,17 @@ namespace KingSurvival.Engine
             return new Command(input);
         }
 
-        private void TranslateInput(string input)
+        private void TranslateInput(ITranslateStrategy strategy, string input)
         {
             // TODO: check input not to be less than 3 chars
             input = input.Trim();
 
-            string inputUppercase = input.ToUpper();
+            string translatedInput = strategy.Translate(input);
 
-            this.TargetSymbol = inputUppercase[0];
+            this.TargetSymbol = translatedInput[0];
 
-            char verticalDirectionLetter = inputUppercase[1];
-            char horizontalDirectionLetter = inputUppercase[2];
+            char verticalDirectionLetter = translatedInput[1];
+            char horizontalDirectionLetter = translatedInput[2];
 
             this.MoveDirection = new Direction(verticalDirectionLetter, horizontalDirectionLetter);
         }
