@@ -1,6 +1,6 @@
 ﻿namespace KingSurvival.Interfaces
 {
-    internal interface IRenderer
+    internal interface IRenderer : IAcceptor
     {
         void Render(char[,] matrix);
 

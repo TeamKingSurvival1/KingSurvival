@@ -20,7 +20,7 @@ namespace KingSurvival.Engine
     /// <summary>
     /// Represents renderer that works with the Console class.
     /// </summary>
-    public sealed class ConsoleRenderer : IRenderer
+    public sealed class ConsoleRenderer : IRenderer, IAcceptor
     {
         private static readonly ConsoleRenderer InstanceField = new ConsoleRenderer();
 
@@ -74,6 +74,11 @@ namespace KingSurvival.Engine
             }
 
             Console.Write(result.ToString());
+        }
+
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
     }
 }

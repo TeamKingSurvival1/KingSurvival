@@ -49,9 +49,13 @@
     <Compile Include="Engine\Formatters\MediumSpacesFormatter.cs" />
     <Compile Include="Engine\PieceFactory.cs" />
     <Compile Include="Engine\Formatters\SmallSpacesFormatter.cs" />
+    <Compile Include="Engine\Visitors\BackgroundColorVisitor.cs" />
+    <Compile Include="Engine\Visitors\ColorChanger.cs" />
+    <Compile Include="Engine\Visitors\ForegroundColorVisitor.cs" />
     <Compile Include="GameplayClasses\Board.cs" />
     <Compile Include="GameplayClasses\Direction.cs" />
     <Compile Include="GameplayClasses\Validations.cs" />
+    <Compile Include="Interfaces\IAcceptor.cs" />
     <Compile Include="Interfaces\ICommand.cs" />
     <Compile Include="Interfaces\IDirection.cs" />
     <Compile Include="GameplayClasses\King.cs" />
@@ -62,6 +66,7 @@
     <Compile Include="Interfaces\IRenderer.cs" />
     <Compile Include="Interfaces\ITranslateStrategy.cs" />
     <Compile Include="Engine\Translators\NormalTranslate.cs" />
+    <Compile Include="Interfaces\IVisitor.cs" />
     <Compile Include="StartGame.cs" />
     <Compile Include="Interfaces\IPiece.cs" />
     <Compile Include="GameplayClasses\Pawn.cs" />
