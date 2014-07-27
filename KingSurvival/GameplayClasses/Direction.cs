@@ -159,7 +159,6 @@ namespace KingSurvival.GameplayClasses
             {
                 this.XUpdateValue = -MoveDistance;
             }
-
             else
             {
                 throw new ArgumentOutOfRangeException("horizontalDirectionLetter", "Invalid horizontal direction");

@@ -73,6 +73,26 @@
 
             Assert.AreEqual('+', sampleBoard[0, 7]);
         }
+        
+        [TestMethod]
+        public void IsCellAvailableTestThatShoudReturnTrue()
+        {
+            Board board = new Board();
+            bool expected = true;
+            bool actual = board.IsCellAvailable(0, 0);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void IsCellAvailableTestThatShoudReturnFalse()
+        {
+            Board board = new Board();
+            bool expected = false;
+            bool actual = board.IsCellAvailable(0, 1);
+
+            Assert.AreEqual(expected, actual);
+        }
 
         private char ExchangeBoardCellSymbols(char currentColor)
         {

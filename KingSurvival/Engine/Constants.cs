@@ -11,6 +11,9 @@
 //-----------------------------------------------------------------------
 namespace KingSurvival.Engine
 {
+    /// <summary>
+    /// Contains global constants.
+    /// </summary>
     internal static class Constants
     {
         internal const int KingInitialX = 3;

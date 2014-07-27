@@ -4,6 +4,9 @@
 
     using Interfaces;    
 
+    /// <summary>
+    /// Represents formatter with big spaces between symbols.
+    /// </summary>
     public class BigSpacesFormatter : IFormatter
     {
         public string Format(char symbol)

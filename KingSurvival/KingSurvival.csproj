@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Engine\BackwardsTranslate.cs" />
+    <Compile Include="Engine\Translators\BackwardsTranslate.cs" />
     <Compile Include="Engine\Formatters\BigSpacesFormatter.cs" />
     <Compile Include="Engine\Command.cs" />
     <Compile Include="Engine\Constants.cs" />
@@ -61,7 +61,7 @@
     <Compile Include="Interfaces\IPieceFactory.cs" />
     <Compile Include="Interfaces\IRenderer.cs" />
     <Compile Include="Interfaces\ITranslateStrategy.cs" />
-    <Compile Include="Interfaces\NormalTranslate.cs" />
+    <Compile Include="Engine\Translators\NormalTranslate.cs" />
     <Compile Include="StartGame.cs" />
     <Compile Include="Interfaces\IPiece.cs" />
     <Compile Include="GameplayClasses\Pawn.cs" />

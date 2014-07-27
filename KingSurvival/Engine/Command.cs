@@ -12,9 +12,14 @@
 namespace KingSurvival.Engine
 {
     using System;
+
+    using Engine.Translators;
     using GameplayClasses;
     using Interfaces;
 
+    /// <summary>
+    /// Represents the user's command.
+    /// </summary>
     public class Command : ICommand
     {
         private char targetSymbol;
@@ -54,6 +59,16 @@ namespace KingSurvival.Engine
 
         public static Command Parse(string input)
         {
+            if (string.IsNullOrEmpty(input))
+            {
+                throw new ArgumentNullException("input", "Input command cannot be null or empty.");
+            }
+
+            if (input.Length != 3)
+            {
+                throw new ArgumentOutOfRangeException("input", "Input command must be 3 characters long.");
+            }
+
             return new Command(input);
         }
 

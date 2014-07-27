@@ -4,6 +4,9 @@
 
     using Interfaces;
 
+    /// <summary>
+    /// Represents formatter with medium spaces between symbols.
+    /// </summary>
     public class MediumSpacesFormatter : IFormatter
     {
         public string Format(char symbol)

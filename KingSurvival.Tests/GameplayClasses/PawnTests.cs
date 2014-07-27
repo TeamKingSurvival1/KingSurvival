@@ -34,5 +34,11 @@
         {
             Pawn examplePawn = new Pawn('K', 2, 5);
         }
+
+        [TestMethod]
+        public void TestingInitializationOfPawnWithValidData()
+        {
+            Pawn examplePawn = new Pawn('B', 2, 5);
+        }
     }
 }

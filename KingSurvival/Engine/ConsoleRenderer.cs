@@ -17,6 +17,9 @@ namespace KingSurvival.Engine
     using Formatters;
     using Interfaces;
 
+    /// <summary>
+    /// Represents renderer that works with the Console class.
+    /// </summary>
     public sealed class ConsoleRenderer : IRenderer
     {
         private static readonly ConsoleRenderer InstanceField = new ConsoleRenderer();
@@ -49,7 +52,7 @@ namespace KingSurvival.Engine
             }
         }
 
-        public static void PrintMessage(string message)
+        public void PrintMessage(string message)
         {
             Console.Write(message);
         }

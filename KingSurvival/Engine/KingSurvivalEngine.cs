@@ -16,6 +16,9 @@ namespace KingSurvival.Engine
     using GameplayClasses;
     using Interfaces;
 
+    /// <summary>
+    /// Represents the main engine of the game.
+    /// </summary>
     public class KingSurvivalEngine
     {
         private const string KingsTurnMessage = "King's Turn: ";
@@ -23,11 +26,11 @@ namespace KingSurvival.Engine
         private const string InvalidMoveMessage = "Invalid Move!";
         private const string PressAnyKeyToContinue = "** Press a key to continue **";
 
-        private Board board;
-        private PieceFactory pieceFactory;
-        private King king;
-        private Piece[] pawns;
-        private IRenderer renderer;
+        private readonly Board board;
+        private readonly PieceFactory pieceFactory;
+        private readonly King king;
+        private readonly Piece[] pawns;
+        private readonly IRenderer renderer;
 
         public KingSurvivalEngine()
         {
@@ -45,7 +48,7 @@ namespace KingSurvival.Engine
             bool hasTurnEnded;
             bool kingWins = false;
 
-            this.PlacePiecesOnBoard(this.board, this.pawns, this.king);
+            this.PlacePiecesOnBoard();
 
             // The main game loop
             while (!gameOver)
@@ -58,13 +61,37 @@ namespace KingSurvival.Engine
                     this.PrintTurnMessage(isKingsTurn);
 
                     string playerInput = Console.ReadLine();
-                    Command currentCommand = Command.Parse(playerInput);
-                    
+                    Command currentCommand;
+
+                    try
+                    {
+                        currentCommand = Command.Parse(playerInput);
+                    }
+                    catch (ArgumentNullException)
+                    {
+                        this.renderer.PrintMessage("Command cannot be empty.");
+                        continue;
+                    }
+                    catch (ArgumentOutOfRangeException ex)
+                    {
+                        if (ex.ParamName == "input")
+                        {
+                            this.renderer.PrintMessage("Command must be exacly 3 characters long.");
+                        }
+                        else
+                        {
+                            this.renderer.PrintMessage("Invalid command.");
+                        }
+
+                        Console.ReadKey(true);
+                        continue;
+                    }
+
                     // TODO:
                     /* 
                     * ?? get currentPiece here, instead of getting it twice - inProcessCommand and IsCommandValid methods
                     */
- 
+
                     if (!Validations.IsCommandValid(this.board, this.king, this.pawns, currentCommand, isKingsTurn))
                     {
                         this.InvalidMoveAction();
@@ -75,7 +102,7 @@ namespace KingSurvival.Engine
 
                     isKingsTurn = !isKingsTurn;
                     hasTurnEnded = true;
-                    gameOver = this.IsGameOver(this.board, this.pawns, this.king);
+                    gameOver = this.IsGameOver();
 
                     if (gameOver)
                     {
@@ -94,8 +121,8 @@ namespace KingSurvival.Engine
                         {
                             Console.WriteLine("King wins in {0} turns.", this.king.MovesCount);
                         }
-                        else 
-                        { 
+                        else
+                        {
                             Console.WriteLine("King loses.");
                         }
                     }
@@ -126,15 +153,15 @@ namespace KingSurvival.Engine
 
             return currentPiece;
         }
-        
+
         internal void InvalidMoveAction()
         {
-            ConsoleRenderer.PrintMessage(InvalidMoveMessage + Environment.NewLine);
-            ConsoleRenderer.PrintMessage(PressAnyKeyToContinue + Environment.NewLine);
+            this.renderer.PrintMessage(InvalidMoveMessage + Environment.NewLine);
+            this.renderer.PrintMessage(PressAnyKeyToContinue + Environment.NewLine);
             Console.ReadKey();
         }
 
-        private bool IsGameOver(Board gameBoard, Piece[] pawns, King king)
+        private bool IsGameOver()
         {
             if (Validations.HasKingReachedTop(this.king) || !Validations.PawnsHavePossibleDirection(this.board, this.pawns) || !Validations.HasKingPossibleDirection(this.board, this.king))
             {
@@ -144,26 +171,26 @@ namespace KingSurvival.Engine
             return false;
         }
 
-        private void PlacePiecesOnBoard(Board gameBoard, Piece[] pawns, King king)
+        private void PlacePiecesOnBoard()
         {
-            for (int i = 0; i < pawns.Length; i++)
+            for (int i = 0; i < this.pawns.Length; i++)
             {
-                Piece currentPawn = pawns[i];
+                Piece currentPawn = this.pawns[i];
                 this.board.PlacePieceOnBoard(currentPawn.X, currentPawn.Y, currentPawn.Symbol);
             }
 
-            this.board.PlacePieceOnBoard(king.X, king.Y, king.Symbol);
+            this.board.PlacePieceOnBoard(this.king.X, this.king.Y, this.king.Symbol);
         }
 
         private void PrintTurnMessage(bool isKingsTurn)
         {
             if (isKingsTurn)
             {
-                ConsoleRenderer.PrintMessage(KingsTurnMessage);
+                this.renderer.PrintMessage(KingsTurnMessage);
             }
             else
             {
-                ConsoleRenderer.PrintMessage(PawnsTurnMessage);
+                this.renderer.PrintMessage(PawnsTurnMessage);
             }
         }
 

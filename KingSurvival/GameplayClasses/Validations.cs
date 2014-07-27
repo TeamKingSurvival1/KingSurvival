@@ -14,6 +14,9 @@ namespace KingSurvival.GameplayClasses
     using System;
     using KingSurvival.Interfaces;
 
+    /// <summary>
+    /// Contains big amount of validations used by the engine.
+    /// </summary>
     internal static class Validations
     {
         private static readonly IDirection[] ValidKingDirections =

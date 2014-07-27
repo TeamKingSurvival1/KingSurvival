@@ -14,6 +14,9 @@ namespace KingSurvival.Engine
     using GameplayClasses;
     using Interfaces;
 
+    /// <summary>
+    /// Represents a factory for creating the pieces in the game.
+    /// </summary>
     public class PieceFactory : IPieceFactory
     {
         private readonly char[] pawnSymbols = { 'A', 'B', 'C', 'D' };
