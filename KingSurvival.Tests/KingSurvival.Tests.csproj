@@ -52,6 +52,8 @@
   <ItemGroup>
     <Compile Include="Engine\Formatters\FormattersTests.cs" />
     <Compile Include="Engine\Translators\TranslatorsTests.cs" />
+    <Compile Include="Engine\CommandTests.cs" />
+    <Compile Include="Engine\PieceFactoryTests.cs" />
     <Compile Include="GameplayClasses\BoardTests.cs" />
     <Compile Include="GameplayClasses\DirectionTests.cs" />
     <Compile Include="GameplayClasses\KingTests.cs" />
