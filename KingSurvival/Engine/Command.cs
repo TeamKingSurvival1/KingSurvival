@@ -74,7 +74,6 @@ namespace KingSurvival.Engine
 
         private void TranslateInput(ITranslateStrategy strategy, string input)
         {
-            // TODO: check input not to be less than 3 chars
             input = input.Trim();
 
             string translatedInput = strategy.Translate(input);

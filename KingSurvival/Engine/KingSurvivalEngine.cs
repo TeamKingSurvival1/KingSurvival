@@ -87,11 +87,6 @@ namespace KingSurvival.Engine
                         continue;
                     }
 
-                    // TODO:
-                    /* 
-                    * ?? get currentPiece here, instead of getting it twice - inProcessCommand and IsCommandValid methods
-                    */
-
                     if (!Validations.IsCommandValid(this.board, this.king, this.pawns, currentCommand, isKingsTurn))
                     {
                         this.InvalidMoveAction();
