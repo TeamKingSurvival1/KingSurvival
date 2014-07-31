@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="KingSurvival.Engine.Command" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="2.5" Y="1.75" Width="1.5" />
+    <Position X="0.5" Y="4" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAgBAAAAAAAEAAAAAAAAACAAAAAgAAEAAAAAAAAAAA=</HashCode>
       <FileName>Engine\Command.cs</FileName>
@@ -9,29 +9,115 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="KingSurvival.Engine.ConsoleRenderer" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="0.5" Y="1.75" Width="1.5" />
+    <Position X="3.25" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAQAAAQBAAAAAAAAA=</HashCode>
+      <HashCode>AIAAAAEAAAABAAABAAAAAAAAAAAAQAAAQBAAAAAAAAA=</HashCode>
       <FileName>Engine\ConsoleRenderer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="KingSurvival.Engine.Constants" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAEAAABAAA=</HashCode>
+      <FileName>Engine\Constants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="KingSurvival.Engine.KingSurvivalEngine" Collapsed="true">
-    <Position X="1.25" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAABAAEEAAAIIAAUMAAAQABAAAAJAAAAACAgAI=</HashCode>
       <FileName>Engine\KingSurvivalEngine.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="KingSurvival.Engine.PieceFactory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAABAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Engine\PieceFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KingSurvival.Engine.Formatters.BigSpacesFormatter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Engine\Formatters\BigSpacesFormatter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KingSurvival.Engine.Formatters.FancySpacesFormatter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Engine\Formatters\FancySpacesFormatter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KingSurvival.Engine.Formatters.MediumSpacesFormatter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Engine\Formatters\MediumSpacesFormatter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KingSurvival.Engine.Formatters.SmallSpacesFormatter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Engine\Formatters\SmallSpacesFormatter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KingSurvival.Engine.Translators.BackwardsTranslate" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Engine\Translators\BackwardsTranslate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KingSurvival.Engine.Translators.NormalTranslate" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Engine\Translators\NormalTranslate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KingSurvival.Engine.Visitors.BackgroundColorVisitor" Collapsed="true">
+    <Position X="5.75" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Engine\Visitors\BackgroundColorVisitor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KingSurvival.Engine.Visitors.ColorChanger" Collapsed="true">
+    <Position X="4.5" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Engine\Visitors\ColorChanger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KingSurvival.Engine.Visitors.ForegroundColorVisitor" Collapsed="true">
+    <Position X="3.25" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Engine\Visitors\ForegroundColorVisitor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Class Name="KingSurvival.GameplayClasses.Board" Collapsed="true">
-    <Position X="0.5" Y="3" Width="1.5" />
+    <Position X="9" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAAAgAACAAAAQAAAAEBAACBAAAgAAAAAAA=</HashCode>
       <FileName>GameplayClasses\Board.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="KingSurvival.GameplayClasses.Direction" Collapsed="true">
-    <Position X="2.5" Y="3" Width="1.5" />
+  <Class Name="KingSurvival.GameplayClasses.Direction" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.5" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAQAAAAAAAAgAAAAAAAAAAACIAAAAwAAAAECAA=</HashCode>
       <FileName>GameplayClasses\Direction.cs</FileName>
@@ -39,53 +125,95 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="KingSurvival.GameplayClasses.King" Collapsed="true">
-    <Position X="2.5" Y="5.75" Width="1.5" />
+    <Position X="9" Y="5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAIAAAAAAAAEAAAABAAAA=</HashCode>
       <FileName>GameplayClasses\King.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KingSurvival.GameplayClasses.Pawn" Collapsed="true">
-    <Position X="0.5" Y="5.75" Width="1.5" />
+    <Position X="11.5" Y="5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameplayClasses\Pawn.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KingSurvival.GameplayClasses.Piece" Collapsed="true">
-    <Position X="1.5" Y="4.25" Width="1.5" />
+    <Position X="10.25" Y="3.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAIAAAAAIAAAAAAAAAAAAAAAAAAAAAAAABgAAAAaAA=</HashCode>
       <FileName>GameplayClasses\Piece.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="KingSurvival.GameplayClasses.Validations" Collapsed="true">
+    <Position X="10.25" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAMAAQIAAAiAAAAQAAQAAAAAAA=</HashCode>
+      <FileName>GameplayClasses\Validations.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="KingSurvival.Interfaces.IAcceptor" Collapsed="true">
+    <Position X="3.25" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IAcceptor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Interface Name="KingSurvival.Interfaces.ICommand" Collapsed="true">
-    <Position X="7.5" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="8.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAEAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\ICommand.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="KingSurvival.Interfaces.IDirection" Collapsed="true">
-    <Position X="5.75" Y="1.25" Width="1.5" />
+    <Position X="11.5" Y="7.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAQAAAAAAAA=</HashCode>
       <FileName>Interfaces\IDirection.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="KingSurvival.Interfaces.IFormatter" Collapsed="true">
+    <Position X="5.75" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IFormatter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Interface Name="KingSurvival.Interfaces.IPiece" Collapsed="true">
-    <Position X="7.5" Y="1.25" Width="1.5" />
+    <Position X="9" Y="7.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
       <FileName>Interfaces\IPiece.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="KingSurvival.Interfaces.IRenderer" Collapsed="true">
-    <Position X="5.75" Y="0.5" Width="1.5" />
+  <Interface Name="KingSurvival.Interfaces.IPieceFactory" Collapsed="true">
+    <Position X="0.5" Y="7.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IPieceFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KingSurvival.Interfaces.IRenderer" Collapsed="true">
+    <Position X="3.25" Y="8.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KingSurvival.Interfaces.ITranslateStrategy" Collapsed="true">
+    <Position X="0.5" Y="9" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Interfaces\ITranslateStrategy.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KingSurvival.Interfaces.IVisitor" Collapsed="true">
+    <Position X="5.75" Y="8.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IVisitor.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />
